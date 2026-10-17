@@ -1,48 +1,53 @@
-/**
- * Central configuration for Kids Fysio Capelle
- * Fill in the integration IDs once received.
- */
-
 export const siteConfig = {
   name: "Kids Fysio Capelle",
+  legalName: "Kids Fysio Capelle",
   domain: "https://kidsfysiocapelle.nl",
+  tagline: "Samen maken we bewegen weer leuk",
   description:
-    "Gespecialiseerde kinderfysiotherapie in Capelle aan den IJssel. Ook voor families uit Rotterdam, Barendrecht, Nieuwerkerk en Krimpen aan den IJssel. Voor kinderen van 0 tot 18 jaar — spelenderwijs in beweging.",
-  phone: "010-3032575",
+    "Gespecialiseerde kinderfysiotherapie in Capelle aan den IJssel. Voor baby's, dreumesen, peuters, kleuters, basisschoolkinderen en tieners. Vergoed door alle zorgverzekeraars.",
+
+  // Contactgegevens
+  phone: "010 303 2575",
   phoneHref: "tel:0103032575",
   email: "info@kidsfysiocapelle.nl",
   whatsapp: "https://wa.me/31682013490",
+
+  // Adres & geo (voor LocalBusiness structured data)
   address: {
     street: "De Linie 1D",
     postalCode: "2905 AX",
     city: "Capelle aan den IJssel",
     country: "NL",
   },
-  geo: {
-    lat: 51.934169,
-    lng: 4.5948,
-  },
-  openingHours: {
-    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    opens: "08:30",
-    closes: "18:00",
-  },
+  geo: { lat: 51.9341695, lng: 4.5948005 },
+  kvk: "87211445",
+
+  // Openingstijden (Ma t/m Vrij 08:30-18:00, avondspreekuur op afspraak)
+  openingHours: { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:30", closes: "18:00" },
+
+  // Vindbaarheidsgebied (local SEO)
   areaServed: [
     "Capelle aan den IJssel",
     "Rotterdam",
-    "Barendrecht",
-    "Nieuwerkerk aan den IJssel",
     "Krimpen aan den IJssel",
+    "Nieuwerkerk aan den IJssel",
+    "Zevenhuizen",
+    "Moerkapelle",
   ],
+
   socials: {
     instagram: "https://www.instagram.com/kidsfysiocapelle/",
   },
-  formspreeFormId: "",
-  googleAnalyticsId: "",
-  googleTagManagerId: "",
-  googleSiteVerification: "",
+
+  /* ─── Integraties: codes hier invullen zodra ontvangen ─── */
+  // Formspree formulier-ID, bijv. "abcdwxyz" (alleen het ID, niet de volledige URL)
+  formspreeFormId: "xqpkkyrl",
+  // Google Analytics 4 measurement ID, bijv. "G-XXXXXXXXXX"
+  googleAnalyticsId: "G-M22DRN64XN",
+  // Google Tag Manager ID, bijv. "GTM-XXXXXXX"
+  googleTagManagerId: "GTM-TJ7PP5CN",
+  // Google Search Console verificatiecode (alleen de content-waarde van de meta tag)
+  googleSiteVerification: "425UBA8tVsW_miJMQCvZnqq6kPpwsN66KaLTkedRqOM",
 } as const;
 
-export const formspreeEndpoint = siteConfig.formspreeFormId
-  ? `https://formspree.io/f/${siteConfig.formspreeFormId}`
-  : "https://formspree.io/f/placeholder";
+export const formspreeEndpoint = `https://formspree.io/f/${siteConfig.formspreeFormId}`;
