@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   Kids Fysio Capelle — High-End Editorial Design System
+   Quiet authority. Warm restraint. Magazine-level typography.
+───────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Surfaces — warm, never pure white */
+  --color-cream: #F7F5F1;
+  --color-warm-gray: #F0EDE8;
+  --color-soft-sand: #E8E4DD;
+  --color-mist: #DDD8D0;
+  --color-stone: #C8C2B8;
+
+  /* Ink */
+  --color-charcoal: #1C1B19;
+  --color-ink: #2A2926;
+  --color-muted: #6B6760;
+  --color-subtle: #9A958C;
+
+  /* Accent — restrained organic */
+  --color-sage: #5A6558;
+  --color-sage-light: #7A8578;
+  --color-sage-pale: #D0D6CE;
+  --color-taupe: #8A7F6E;
+  --color-forest: #3E463C;
+
+  --color-white: #FFFFFF;
+  --color-surface: #F7F5F1;
+
+  /* Typography */
+  --font-serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.75;
+  letter-spacing: -0.011em;
+}
+
+::selection {
+  background-color: var(--color-sage-pale);
+  color: var(--color-charcoal);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--color-sage);
+  outline-offset: 3px;
+}
+
+.prose-luxury p {
+  margin-bottom: 1.35em;
+  color: var(--color-muted);
+}
+
+.prose-luxury strong {
+  color: var(--color-charcoal);
+  font-weight: 560;
+}
