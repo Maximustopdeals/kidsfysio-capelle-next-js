@@ -28,12 +28,18 @@ export default function ReviewsPage() {
 
       <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 lg:gap-y-24">
             {reviews.map((r, i) => (
               <FadeIn key={i} delay={i * 0.06}>
-                <blockquote className="border-t border-charcoal/10 pt-8">
-                  <p className="text-ink leading-[1.8] font-light text-lg">“{r.text}”</p>
-                  <footer className="mt-6 text-[0.8rem] text-muted tracking-wide">— {r.author}</footer>
+                <blockquote className="group border-t border-charcoal/10 pt-8 transition-colors duration-500 hover:border-forest/40">
+                  <p className="text-charcoal leading-[1.8] font-light text-lg lg:text-xl">
+                    “{r.text}”
+                  </p>
+                  <footer className="mt-6">
+                    <span className="inline-block text-[0.75rem] font-medium tracking-[0.15em] uppercase text-sage">
+                      {r.author}
+                    </span>
+                  </footer>
                 </blockquote>
               </FadeIn>
             ))}
@@ -44,14 +50,16 @@ export default function ReviewsPage() {
       <section className="py-28 lg:py-40 bg-warm-gray">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <FadeIn>
-            <h2 className="font-serif text-[clamp(2rem,3.5vw,2.75rem)] font-light tracking-[-0.025em] text-charcoal">
+            <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
               Deel ook uw ervaring
             </h2>
-            <p className="mt-6 text-muted leading-relaxed font-light">
+            <p className="mt-6 text-muted leading-relaxed font-light text-lg">
               Help andere ouders bij hun keuze en deel hoe Kids Fysio Capelle uw kind heeft geholpen.
             </p>
             <div className="mt-12">
-              <Button href="/contact/" variant="primary" size="lg">Contact opnemen</Button>
+              <Button href="/contact/" variant="primary" size="lg">
+                Contact opnemen
+              </Button>
             </div>
           </FadeIn>
         </div>
