@@ -25,8 +25,7 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
   title: {
-    default:
-      "Kinderfysiotherapie Capelle aan den IJssel | Je kind weer spelend in beweging",
+    default: "Kinderfysiotherapie Capelle aan den IJssel | Je kind weer spelend in beweging",
     template: "%s",
   },
   description: siteConfig.description,
@@ -51,14 +50,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: "Kinderfysiotherapie Capelle aan den IJssel | Kids Fysio Capelle",
     description: siteConfig.description,
-    images: [
-      {
-        url: "/images/KidsFysioCapelle-team-2.webp",
-        width: 1200,
-        height: 630,
-        alt: "Het team van Kids Fysio Capelle in de praktijk",
-      },
-    ],
+    images: [{ url: "/images/KidsFysioCapelle-team-2.webp", width: 1200, height: 630, alt: "Het team van Kids Fysio Capelle in de praktijk" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -66,31 +58,19 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: ["/images/KidsFysioCapelle-team-2.webp"],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  // Google Search Console-verificatie — code invullen in src/config.ts
-  ...(siteConfig.googleSiteVerification
-    ? { verification: { google: siteConfig.googleSiteVerification } }
-    : {}),
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  ...(siteConfig.googleSiteVerification ? { verification: { google: siteConfig.googleSiteVerification } } : {}),
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="nl-NL" className={`${nunito.variable} ${openSans.variable}`}>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <GtmNoscript />
         <Header />
-        {children}
+        <main className="flex-grow">
+          {children}
+        </main>
         <Footer />
         <FloatingButtons />
         <StructuredData />
