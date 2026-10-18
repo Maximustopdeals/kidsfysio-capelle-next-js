@@ -53,18 +53,21 @@ export default function Header() {
   return (
     <div className="sticky top-0 z-[1000] w-full flex flex-col">
       
-      {/* ─── TOPBAR (Luxe & Subtiel) ─── */}
-      <div className="bg-sage text-forest text-[0.65rem] sm:text-xs py-2 px-6 lg:px-12 flex justify-between items-center font-bold tracking-[0.15em] uppercase">
-        <a className="hover:text-charcoal transition-colors flex items-center gap-2" href="https://www.instagram.com/kidsfysiocapelle/" target="_blank" rel="noopener noreferrer" aria-label="Volg ons op Instagram">
+      {/* ─── TOPBAR (Minimalistisch & Luxe) ─── */}
+      <div className="bg-sage text-forest text-[0.65rem] sm:text-xs py-2.5 px-6 lg:px-12 grid grid-cols-3 items-center font-bold tracking-[0.15em] uppercase">
+        {/* Links: Instagram */}
+        <a className="hover:text-charcoal transition-colors flex items-center gap-2 justify-self-start" href="https://www.instagram.com/kidsfysiocapelle/" target="_blank" rel="noopener noreferrer" aria-label="Volg ons op Instagram">
           <InstagramIcon />
           <span className="hidden sm:inline">@kidsfysiocapelle</span>
         </a>
+        
+        {/* Midden: Slogan */}
         <span className="hidden md:block text-center truncate">
           Samen maken we bewegen weer leuk
         </span>
-        <a className="hover:text-charcoal transition-colors hidden sm:block" href="mailto:info@kidsfysiocapelle.nl">
-          info@kidsfysiocapelle.nl
-        </a>
+        
+        {/* Rechts: Leeg voor perfecte centrering */}
+        <div className="justify-self-end"></div>
       </div>
 
       {/* ─── HOOFDNAVIGATIE ─── */}
@@ -74,7 +77,14 @@ export default function Header() {
           {/* Links: Logo */}
           <div className="flex justify-start">
             <Link href="/" className="relative z-10 shrink-0" aria-label="Kids Fysio Capelle - Home">
-              <Image src="/images/kids-fysio-capelle.png" alt="Kids Fysio Capelle" width={200} height={80} className="h-10 lg:h-12 w-auto object-contain transition-transform hover:scale-105" priority />
+              <Image 
+                src="/images/Logo_Kids_Fysio_Capelle.png" // <-- HIER IS DE FIX TOEGEPAST
+                alt="Kids Fysio Capelle" 
+                width={220} // Iets breder voor een mooiere verhouding
+                height={90} 
+                className="h-10 lg:h-14 w-auto object-contain transition-transform hover:scale-105" 
+                priority 
+              />
             </Link>
           </div>
 
