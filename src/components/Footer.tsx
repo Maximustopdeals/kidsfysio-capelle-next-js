@@ -117,12 +117,22 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Copyright Balk */}
+            {/* Copyright Balk */}
       <div className="border-t border-[#b5dfcb]/30">
         <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/80">
-          <p>© {new Date().getFullYear()} Kids Fysio Capelle - Alle rechten voorbehouden |{" "}
+          <p className="text-center md:text-left">
+            © {new Date().getFullYear()} Kids Fysio Capelle - Alle rechten voorbehouden |{" "}
             <a href="/images/Privacyverklaring-KidsFysioCapelle.pdf" target="_blank" rel="noopener noreferrer" className="text-[#b5dfcb] hover:text-white transition-colors underline decoration-[#b5dfcb]/50 underline-offset-2">
               Privacy verklaring
+            </a>
+            {" "}| Webdesign door{" "}
+            <a 
+              href="https://www.webboostpartner.nl" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-[#b5dfcb] hover:text-white transition-colors underline decoration-[#b5dfcb]/50 underline-offset-2"
+            >
+              Webboostpartner
             </a>
           </p>
         </div>
