@@ -19,10 +19,10 @@ function WhatsAppIcon() {
 
 export default function Footer() {
   return (
-    // De achtergrondkleur is nu exact #2a4a3d, net als in WordPress!
-    <footer className="w-full bg-[#2a4a3d] text-white font-open-sans mt-auto overflow-hidden">
+    <footer className="w-full bg-[#2a4a3d] text-white font-open-sans mt-auto relative">
       
-      <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-28 lg:pb-16">
+      {/* pb-32 zorgt voor genoeg ruimte onderaan voor de FloatingButtons */}
+      <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-32 lg:pb-36">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           
           {/* Kolom 1: Brand & Socials */}
@@ -33,7 +33,6 @@ export default function Footer() {
                 alt="Kids Fysio Capelle" 
                 width={180} 
                 height={80} 
-                // Geen mix-blend-mode meer nodig, de kleur matcht nu!
                 className="h-16 w-auto object-contain"
               />
             </Link>
@@ -117,23 +116,21 @@ export default function Footer() {
         </div>
       </div>
 
-            {/* Copyright Balk */}
-      <div className="border-t border-[#b5dfcb]/30">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 py-8 grid grid-cols-1 md:grid-cols-3 items-center gap-4 text-xs text-white/80">
+      {/* Copyright Balk */}
+      <div className="absolute bottom-0 left-0 right-0 border-t border-[#b5dfcb]/30 bg-[#2a4a3d]/95 backdrop-blur-sm">
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/80">
           
-          {/* Lege kolom links om het midden perfect te centreren */}
-          <div className="hidden md:block"></div>
-
-          {/* Midden: Copyright & Privacy */}
-          <p className="text-center">
-            © {new Date().getFullYear()} Kids Fysio Capelle - Alle rechten voorbehouden |{" "}
-            <a href="/images/Privacyverklaring-KidsFysioCapelle.pdf" target="_blank" rel="noopener noreferrer" className="text-[#b5dfcb] hover:text-white transition-colors underline decoration-[#b5dfcb]/50 underline-offset-2">
+          {/* Links leeg, Midden Copyright, Rechts Webboostpartner */}
+          <div className="hidden md:block md:w-1/4"></div>
+          
+          <p className="text-center md:w-1/2 flex flex-wrap justify-center gap-x-1">
+            <span>© {new Date().getFullYear()} Kids Fysio Capelle - Alle rechten voorbehouden |</span>
+            <a href="/images/Privacyverklaring-KidsFysioCapelle.pdf" target="_blank" rel="noopener noreferrer" className="whitespace-nowrap text-[#b5dfcb] hover:text-white transition-colors underline decoration-[#b5dfcb]/50 underline-offset-2">
               Privacy verklaring
             </a>
           </p>
 
-          {/* Rechts: Webdesign door Webboostpartner */}
-          <p className="text-center md:text-right font-medium">
+          <p className="text-center md:text-right md:w-1/4 font-medium whitespace-nowrap">
             Webdesign door{" "}
             <a 
               href="https://www.webboostpartner.nl" 
