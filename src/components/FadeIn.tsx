@@ -1,19 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import { type ReactNode } from "react";
-
-const defaultVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1.15,
-      ease: [0.22, 1, 0.36, 1], // elegant easeOut
-    },
-  },
-};
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 interface FadeInProps {
   children: ReactNode;
@@ -30,38 +17,51 @@ export default function FadeIn({
   direction = "up",
   once = true,
 }: FadeInProps) {
-  const offset = 28;
-  const directionMap = {
-    up: { y: offset },
-    down: { y: -offset },
-    left: { x: offset },
-    right: { x: -offset },
-    none: {},
-  };
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const variants: Variants = {
-    hidden: { opacity: 0, ...directionMap[direction] },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: {
-        duration: 1.2,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (once && ref.current) observer.unobserve(ref.current);
+        } else if (!once) {
+          setIsVisible(false);
+        }
       },
-    },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, [once]);
+
+  const directionClasses = {
+    up: "translate-y-8",
+    down: "-translate-y-8",
+    left: "translate-x-8",
+    right: "-translate-x-8",
+    none: "translate-y-0",
   };
 
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once, margin: "-60px" }}
-      variants={variants}
-      className={className}
+    <div
+      ref={ref}
+      // Hier gebruiken we Tailwind classes voor de animatie
+      className={`transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        isVisible 
+          ? "opacity-100 translate-y-0 translate-x-0" 
+          : `opacity-0 ${directionClasses[direction]}`
+      } ${className}`}
+      style={{ transitionDelay: `${delay}s` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
