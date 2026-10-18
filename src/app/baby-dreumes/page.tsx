@@ -5,9 +5,9 @@ import Button from "@/components/Button";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
-  title: "Baby fysiotherapie Capelle aan den IJssel | 0–2 jaar",
+  title: "Baby fysiotherapie Capelle aan den IJssel | 0-2 jaar",
   description:
-    "Kinderfysiotherapie voor baby en dreumes (0–2 jaar) in Capelle aan den IJssel. Voorkeurshouding, overstrekking en motorische ontwikkeling. Ook voor Rotterdam, Barendrecht en omgeving.",
+    "Kinderfysiotherapie voor baby en dreumes (0-2 jaar) in Capelle aan den IJssel. Voorkeurshouding, overstrekking en motorische ontwikkeling. Ook voor Rotterdam, Barendrecht en omgeving.",
   alternates: { canonical: "/baby-dreumes/" },
   openGraph: {
     title: "Baby fysiotherapie Capelle aan den IJssel | Kids Fysio Capelle",
@@ -53,23 +53,25 @@ export default function BabyDreumesPage() {
   return (
     <>
       <PageHero
-        eyebrow="0–2 jaar"
+        eyebrow="0-2 jaar"
         title={<>Baby & <em className="italic">Dreumes</em></>}
-        subtitle="Professionele begeleiding bij motorische ontwikkeling, voorkeurshoudingen en overstrekking — afgestemd op de allerkleinsten."
+        subtitle="Professionele begeleiding bij motorische ontwikkeling, voorkeurshoudingen en overstrekking, afgestemd op de allerkleinsten."
       />
 
       {/* Photo moment */}
-      <section className="relative h-[50vh] min-h-[360px] overflow-hidden">
+      <section className="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
         <Image
           src="/images/Kinderfysiotherapeut-begeleidt-een-baby-tijdens-een-oefening-op-een-speelmat.jpg"
           alt="Kinderfysiotherapeut begeleidt een baby tijdens een oefening op een speelmat bij Kids Fysio Capelle"
           fill
           className="object-cover object-center"
           sizes="100vw"
+          priority
         />
-        <div className="absolute inset-0 bg-charcoal/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent" />
       </section>
 
+      {/* Waarom vroeg starten */}
       <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
@@ -78,7 +80,7 @@ export default function BabyDreumesPage() {
                 <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
                   Waarom vroeg starten
                 </p>
-                <h2 className="font-serif text-[clamp(2rem,3.5vw,3rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
+                <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
                   Vroegsignalering
                   <br />
                   <em className="italic">is cruciaal</em>
@@ -86,7 +88,7 @@ export default function BabyDreumesPage() {
               </FadeIn>
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
-              <FadeIn delay={0.1}>
+              <FadeIn delay={0.15}>
                 <p className="text-muted text-lg leading-[1.8] font-light">
                   Uw baby maakt in de eerste twee jaar een razendsnelle
                   ontwikkeling door. Hoe eerder een eventuele achterstand of
@@ -96,7 +98,7 @@ export default function BabyDreumesPage() {
                 <p className="mt-6 text-muted leading-[1.8] font-light">
                   Wij werken volgens de nieuwste inzichten en bieden
                   kinderfysiotherapie die volledig is afgestemd op de
-                  ontwikkelingsfase van uw kind — in Capelle aan den IJssel,
+                  ontwikkelingsfase van uw kind, in Capelle aan den IJssel,
                   bereikbaar voor families uit Rotterdam, Barendrecht,
                   Nieuwerkerk en Krimpen.
                 </p>
@@ -106,28 +108,29 @@ export default function BabyDreumesPage() {
         </div>
       </section>
 
+      {/* Onze aanpak */}
       <section className="py-28 lg:py-36 bg-warm-gray">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
             <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
               Onze aanpak
             </p>
-            <h2 className="font-serif text-[clamp(2rem,3.5vw,3rem)] font-light tracking-[-0.025em] text-charcoal mb-16 lg:mb-20">
+            <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal mb-16 lg:mb-24">
               Bewezen methode,{" "}
               <em className="italic">aansluitend bij uw kind</em>
             </h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {approach.map((item, i) => (
-              <FadeIn key={item.title} delay={i * 0.08}>
-                <div>
+              <FadeIn key={item.title} delay={i * 0.1}>
+                <div className="group border-t border-charcoal/10 pt-8 transition-colors duration-500 hover:border-forest/40">
                   <span className="text-[0.7rem] font-medium tracking-[0.18em] uppercase text-sage">
                     0{i + 1}
                   </span>
-                  <h3 className="mt-4 font-serif text-xl lg:text-2xl font-light text-charcoal">
+                  <h3 className="mt-4 font-serif text-2xl lg:text-3xl font-light text-charcoal group-hover:text-forest transition-colors duration-300">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-muted leading-relaxed font-light">
+                  <p className="mt-4 text-muted leading-relaxed font-light">
                     {item.text}
                   </p>
                 </div>
@@ -137,29 +140,32 @@ export default function BabyDreumesPage() {
         </div>
       </section>
 
+      {/* Indicaties */}
       <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5 relative aspect-[4/5] rounded-sm overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            <div className="lg:col-span-5 relative aspect-[4/5] rounded-[2rem] shadow-2xl shadow-charcoal/10 overflow-hidden">
               <Image
                 src="/images/babies-op-een-speelmat-bij-Kids-Fysio-Capelle.png"
                 alt="Baby's op een speelmat bij Kids Fysio Capelle in Capelle aan den IJssel"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>
+
             <div className="lg:col-span-6 lg:col-start-7">
               <FadeIn>
                 <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
                   Indicaties
                 </p>
-                <h2 className="font-serif text-[clamp(2rem,3.5vw,3rem)] font-light tracking-[-0.025em] text-charcoal mb-4">
+                <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal mb-6 leading-[1.1]">
                   Wanneer is kinderfysiotherapie
                   <br />
                   <em className="italic">zinvol?</em>
                 </h2>
-                <p className="text-muted max-w-xl mb-10 font-light leading-relaxed">
+                <p className="text-muted max-w-xl mb-10 font-light leading-relaxed text-lg">
                   Herkenbaar bij uw baby? Wij helpen graag bij deze en andere
                   indicaties.
                 </p>
@@ -167,10 +173,10 @@ export default function BabyDreumesPage() {
                   {indications.map((item) => (
                     <div
                       key={item}
-                      className="flex items-start gap-4 py-3.5 border-t border-charcoal/8"
+                      className="flex items-start gap-4 py-4 border-t border-charcoal/10"
                     >
-                      <span className="mt-2.5 w-1 h-1 rounded-full bg-sage flex-shrink-0" />
-                      <span className="text-ink font-light">{item}</span>
+                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-sage flex-shrink-0" />
+                      <span className="text-charcoal font-light">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -180,23 +186,24 @@ export default function BabyDreumesPage() {
         </div>
       </section>
 
+      {/* Complexere aandoeningen */}
       <section className="py-28 lg:py-36 bg-warm-gray">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
-            <h2 className="font-serif text-[clamp(2rem,3.5vw,3rem)] font-light tracking-[-0.025em] text-charcoal mb-6">
+            <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal mb-6 leading-[1.1]">
               Complexere aandoeningen
             </h2>
-            <p className="text-muted max-w-2xl mb-12 leading-relaxed font-light">
+            <p className="text-muted max-w-2xl mb-12 leading-relaxed font-light text-lg">
               Onze therapeuten hebben ruime ervaring met complexere
               aandoeningen waarbij kinderfysiotherapie essentieel is.
             </p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 max-w-2xl">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 max-w-3xl">
               {complex.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-4 py-4 border-t border-charcoal/8 text-ink font-light"
+                  className="flex items-center gap-4 py-4 border-t border-charcoal/10 text-charcoal font-light"
                 >
-                  <span className="w-1 h-1 rounded-full bg-sage flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-sage flex-shrink-0" />
                   {item}
                 </li>
               ))}
@@ -205,13 +212,14 @@ export default function BabyDreumesPage() {
         </div>
       </section>
 
+      {/* Call to action */}
       <section className="py-28 lg:py-40 bg-cream">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <FadeIn>
-            <h2 className="font-serif text-[clamp(2rem,3.5vw,3rem)] font-light tracking-[-0.025em] text-charcoal">
+            <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
               Geen verwijzing nodig
             </h2>
-            <p className="mt-6 text-muted leading-relaxed font-light">
+            <p className="mt-6 text-muted leading-relaxed font-light text-lg">
               U kunt direct een afspraak maken voor intake en onderzoek.
             </p>
             <div className="mt-12 flex flex-wrap justify-center gap-5">
