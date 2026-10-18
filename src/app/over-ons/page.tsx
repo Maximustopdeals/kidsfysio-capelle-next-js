@@ -7,7 +7,7 @@ import PageHero from "@/components/PageHero";
 export const metadata: Metadata = {
   title: "Over Kids Fysio Capelle | Praktijk Capelle aan den IJssel",
   description:
-    "Maak kennis met Kids Fysio Capelle. Gespecialiseerde kinderfysiotherapie in Capelle aan den IJssel — speels, veilig en prikkelarm.",
+    "Maak kennis met Kids Fysio Capelle. Gespecialiseerde kinderfysiotherapie in Capelle aan den IJssel, speels, veilig en prikkelarm.",
   alternates: { canonical: "/over-ons/" },
 };
 
@@ -30,7 +30,7 @@ export default function OverOnsPage() {
       {/* Full-width sfeerbeeld direct onder de hero */}
       <section className="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/images/KidsFysioCapelle-praktijkruimte.webp" // Let op de 't' in praktijk!
+          src="/images/KidsFysioCapelle-praktijkruimte.webp"
           alt="Praktijkruimte Kids Fysio Capelle in Capelle aan den IJssel"
           fill
           className="object-cover object-center"
@@ -103,7 +103,6 @@ export default function OverOnsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            {/* Afbeelding met mooie afronding en schaduw */}
             <div className="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-2xl shadow-charcoal/10">
               <Image
                 src="/images/Kids-Fysio-Capelle-wachtkamer.webp"
