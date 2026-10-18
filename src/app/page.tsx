@@ -169,7 +169,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. NEW: Gespecialiseerde Kinderfysiotherapie & CTA */}
+      {/* 3. Gespecialiseerde Kinderfysiotherapie & CTA */}
       <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -227,7 +227,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. NEW: Waarom Kids Fysio Capelle */}
+      {/* 4. Waarom Kids Fysio Capelle */}
       <section className="py-28 lg:py-36 bg-warm-gray">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
@@ -267,8 +267,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn>
               <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl">
+                {/* HIER IS DE FIX TOEGEPAST: 'praktijkruimte' is nu 'prakijkruimte' */}
                 <Image
-                  src="/images/KidsFysioCapelle-praktijkruimte.webp"
+                  src="/images/KidsFysioCapelle-prakijkruimte.webp"
                   alt="Praktijkruimte Kids Fysio Capelle"
                   fill
                   className="object-cover"
