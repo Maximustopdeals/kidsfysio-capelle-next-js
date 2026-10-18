@@ -31,28 +31,35 @@ export default function ContactForm() {
     }
   }
 
+  // Succesmelding (High-End Kaart)
   if (status === "success") {
     return (
-      <div className="text-center py-10 px-6 rounded-xl bg-sage-pale/40">
-        <h3 className="font-serif text-2xl font-light text-charcoal">
+      <div className="text-center py-16 px-8 rounded-[2rem] bg-brand-light/50 border border-brand-mint/30 shadow-sm">
+        <div className="mx-auto w-16 h-16 bg-brand-primary text-white rounded-full flex items-center justify-center mb-6 shadow-lg shadow-brand-primary/30">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        </div>
+        <h3 className="font-serif text-3xl font-light text-brand-dark mb-3">
           Bedankt voor uw bericht
         </h3>
-        <p className="mt-3 text-muted">
+        <p className="text-muted text-lg">
           We nemen zo snel mogelijk contact met u op.
         </p>
       </div>
     );
   }
 
+  // Input styling (High-End)
   const inputClass =
-    "w-full px-4 py-3.5 rounded-xl border border-mist bg-cream text-charcoal placeholder:text-subtle/70 focus:outline-none focus:ring-2 focus:ring-sage/30 focus:border-sage/40 transition-all duration-300 text-[0.95rem]";
-
+    "w-full px-4 py-3.5 rounded-xl border border-charcoal/10 bg-white text-brand-dark placeholder:text-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary/40 transition-all duration-300 text-[0.95rem] shadow-sm";
+  
   const labelClass =
-    "block text-sm font-medium text-ink mb-2 tracking-wide";
+    "block text-sm font-semibold text-brand-dark mb-2 tracking-wide";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label htmlFor="naam" className={labelClass}>
             Uw naam *
@@ -162,7 +169,7 @@ export default function ContactForm() {
             Selecteer...
           </option>
           <option value="Google">Google</option>
-          <option value="Familie en/ of vrienden">Familie / vrienden</option>
+          <option value="Familie en/of vrienden">Familie en/of vrienden</option>
           <option value="Instagram">Instagram</option>
           <option value="Anders">Anders</option>
         </select>
@@ -183,19 +190,19 @@ export default function ContactForm() {
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-red-700">
+        <div className="p-4 rounded-xl bg-red-50 border border-red-100 text-sm text-red-700">
           Er ging iets mis. Probeer het opnieuw of mail naar{" "}
-          <a href="mailto:info@kidsfysiocapelle.nl" className="underline">
+          <a href="mailto:info@kidsfysiocapelle.nl" className="font-semibold underline hover:text-red-900 transition-colors">
             info@kidsfysiocapelle.nl
           </a>
           .
-        </p>
+        </div>
       )}
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full py-4 rounded-full bg-sage text-cream font-medium tracking-wide hover:bg-forest transition-colors duration-400 disabled:opacity-60"
+        className="w-full py-4 rounded-full bg-brand-primary text-white font-nunito font-bold tracking-wide shadow-lg shadow-brand-primary/20 hover:-translate-y-0.5 hover:bg-brand-dark transition-all duration-300 disabled:opacity-60 disabled:hover:translate-y-0 disabled:shadow-none mt-4"
       >
         {status === "sending" ? "Versturen..." : "Verstuur bericht"}
       </button>
