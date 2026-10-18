@@ -28,34 +28,37 @@ export default function FloatingButtons() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] flex flex-row items-end gap-4">
-      
-      {/* Back to Top Knop */}
-      <button
-        onClick={scrollToTop}
-        aria-label="Terug naar boven"
-        className={`flex items-center justify-center w-12 h-12 rounded-full bg-forest text-white shadow-lg shadow-forest/30 transition-all duration-300 hover:-translate-y-1 hover:bg-charcoal ${
-          showBackToTop ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-4 invisible"
-        }`}
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 19V5M5 12l7-7 7 7" />
-        </svg>
-      </button>
+    // Deze wrapper is fixed, maar de inhoud lijnt perfect uit met de footer (max-w-7xl)
+    <div className="fixed bottom-0 left-0 right-0 z-[9999] pointer-events-none">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-24 flex justify-between items-end w-full">
+        
+        {/* BackToTop Knop - Helemaal links uitgelijnd */}
+        <button
+          onClick={scrollToTop}
+          aria-label="Terug naar boven"
+          className={`pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full bg-[#144536] text-white shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#0f3328] ${
+            showBackToTop ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-4 invisible"
+          }`}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+          </svg>
+        </button>
 
-      {/* WhatsApp Knop met pulse effect */}
-      <a
-        href="https://wa.me/31682013490"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat via WhatsApp"
-        className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-xl shadow-[#25D366]/40 transition-transform duration-300 hover:scale-110 hover:-translate-y-1"
-      >
-        {/* Pulse animatie ring */}
-        <span className="absolute inset-0 rounded-full border-2 border-[#25D366] opacity-75 animate-ping" />
-        <WhatsAppIcon />
-      </a>
-      
+        {/* WhatsApp Knop - Helemaal rechts uitgelijnd */}
+        <a
+          href="https://wa.me/31682013490"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat via WhatsApp"
+          className="pointer-events-auto relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-xl shadow-[#25D366]/40 transition-transform duration-300 hover:scale-110 hover:-translate-y-1"
+        >
+          {/* Pulse animatie ring */}
+          <span className="absolute inset-0 rounded-full border-2 border-[#25D366] opacity-75 animate-ping" />
+          <WhatsAppIcon />
+        </a>
+
+      </div>
     </div>
   );
 }
