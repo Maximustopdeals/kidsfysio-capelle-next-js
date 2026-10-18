@@ -13,7 +13,7 @@ export default function StructuredData() {
     description: siteConfig.description,
     url: siteConfig.domain,
     logo: `${siteConfig.domain}/images/Logo_Kids_Fysio_Capelle.png`,
-    image: `${siteConfig.domain}/images/KidsFysioCapelle-prakijkruimte.webp`,
+    image: `${siteConfig.domain}/images/KidsFysioCapelle-praktijkruimte.webp`, // <-- AANGEPAST (t toegevoegd)
     telephone: siteConfig.phone,
     email: siteConfig.email,
     priceRange: "€€",
