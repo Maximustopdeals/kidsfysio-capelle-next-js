@@ -119,13 +119,22 @@ export default function Footer() {
 
             {/* Copyright Balk */}
       <div className="border-t border-[#b5dfcb]/30">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/80">
-          <p className="text-center md:text-left">
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 py-8 grid grid-cols-1 md:grid-cols-3 items-center gap-4 text-xs text-white/80">
+          
+          {/* Lege kolom links om het midden perfect te centreren */}
+          <div className="hidden md:block"></div>
+
+          {/* Midden: Copyright & Privacy */}
+          <p className="text-center">
             © {new Date().getFullYear()} Kids Fysio Capelle - Alle rechten voorbehouden |{" "}
             <a href="/images/Privacyverklaring-KidsFysioCapelle.pdf" target="_blank" rel="noopener noreferrer" className="text-[#b5dfcb] hover:text-white transition-colors underline decoration-[#b5dfcb]/50 underline-offset-2">
               Privacy verklaring
             </a>
-            {" "}| Webdesign door{" "}
+          </p>
+
+          {/* Rechts: Webdesign door Webboostpartner */}
+          <p className="text-center md:text-right font-medium">
+            Webdesign door{" "}
             <a 
               href="https://www.webboostpartner.nl" 
               target="_blank" 
@@ -135,6 +144,7 @@ export default function Footer() {
               Webboostpartner
             </a>
           </p>
+
         </div>
       </div>
     </footer>
