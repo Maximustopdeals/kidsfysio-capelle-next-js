@@ -347,37 +347,39 @@ export default function OverOnsPage() {
       </section>
 
       {/* 7. Afsluitende CTA met badges */}
-      <section className="py-28 lg:py-40 bg-brand-dark">
+      <section className="py-28 lg:py-40 bg-cream">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <FadeIn>
-            <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-white leading-[1.1]">
+            <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
               Wilt u onze praktijk bezoeken?
             </h2>
-            <p className="mt-6 text-white/70 leading-relaxed font-light text-lg mb-12">
+            <p className="mt-6 text-muted leading-relaxed font-light text-lg mb-12">
               Neem contact op voor een afspraak of meer informatie. We heten u graag welkom!
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+            {/* High-End Badges (Plat en minimalistisch) */}
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-14">
               {[
                 "Vergoed door alle zorgverzekeraars",
                 "Geen wachtlijst",
-                "Gespecialiseerde kinderfysiotherapeuten",
+                "Gespecialiseerde therapeuten",
                 "Kindvriendelijke omgeving"
               ].map((badge) => (
-                <div key={badge} className="flex items-center gap-3 bg-white/10 p-4 rounded-xl border border-white/10">
-                  <span className="text-brand-mint flex-shrink-0">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                <div key={badge} className="flex items-center gap-2">
+                  <span className="text-brand-primary flex-shrink-0">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
                   </span>
-                  <span className="text-sm font-medium text-white text-left">{badge}</span>
+                  <span className="text-sm font-medium text-charcoal">{badge}</span>
                 </div>
               ))}
             </div>
 
+            {/* Knoppen */}
             <div className="flex flex-wrap justify-center gap-5">
-              <Button href="/contact/" variant="primary" size="lg" className="bg-brand-mint text-brand-dark hover:bg-white">
+              <Button href="/contact/" variant="primary" size="lg">
                 Afspraak maken
               </Button>
-              <Button href="tel:0103032575" variant="outline" size="lg" className="border-white/30 text-white hover:bg-white hover:text-brand-dark">
+              <Button href="tel:0103032575" variant="outline" size="lg">
                 Bel 010 303 2575
               </Button>
             </div>
