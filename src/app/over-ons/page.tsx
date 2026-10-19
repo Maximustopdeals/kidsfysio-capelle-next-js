@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/over-ons/" },
 };
 
-// HIER STAAN DE 4 FYSIOTHERAPEUTEN
 const team = [
   {
     name: "Mellisa",
@@ -105,10 +104,7 @@ export default function OverOnsPage() {
         </div>
       </section>
 
-      {/* 
-        ⬇️⬇️⬇️ DIT IS DE SECTIE DIE U MISTE ⬇️⬇️⬇️
-        Ons gespecialiseerde team 
-      */}
+      {/* Ons gespecialiseerde team */}
       <section className="py-28 lg:py-36 bg-warm-gray">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
@@ -164,7 +160,6 @@ export default function OverOnsPage() {
           </div>
         </div>
       </section>
-      {/* ⬆️⬆️⬆️ EINDE TEAM SECTIE ⬆️⬆️⬆️ */}
 
       {/* Bewegen met plezier */}
       <section className="py-28 lg:py-36 bg-cream">
