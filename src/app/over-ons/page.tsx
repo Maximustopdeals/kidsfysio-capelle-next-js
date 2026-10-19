@@ -222,13 +222,13 @@ export default function OverOnsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            <div className="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-2xl shadow-charcoal/10">
+            {/* AANGEPAST: aspect-[4/5] in plaats van aspect-[4/3] */}
+            <div className="lg:col-span-5 relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-2xl shadow-charcoal/10">
               <Image
                 src="/images/KidsFysioCapelle-behandeling.webp"
                 alt="Kinderfysiotherapie behandeling bij Kids Fysio Capelle"
                 fill
-                // HIER IS DE FIX: object-top toegevoegd
-                className="object-cover object-top transition-transform duration-700 hover:scale-105"
+                className="object-cover object-center transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>
