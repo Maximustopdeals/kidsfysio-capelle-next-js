@@ -43,7 +43,7 @@ const partners = [
 ];
 
 const schools = [
-  { name: "PCB De Horizon", logo: "/images/pcb-De-Horizon-Capelle-aan-den-IJssel.png", link: "https://www.horizoncapelle.nl/" },
+  { name: "PCB De Horizon", logo: "/images/pcb-De-Horizon-Capelle-aan-den-IJssel.webp", link: "https://www.horizoncapelle.nl/" },
   { name: "Groen van Prinstererschool", logo: "/images/Groen-van-Prinstererschool.png", link: "https://www.groencapelle.nl/" },
   { name: "OBS De Catamaran", logo: "/images/logo_OBS-catamaran.png", link: "https://www.obsdecatamaran.nl/" },
   { name: "IKC Cornelis Haak", logo: "/images/IKC-Cornelis-Haak.png", link: "https://ikccornelishaak.nl/" },
