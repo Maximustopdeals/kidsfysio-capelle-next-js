@@ -110,7 +110,7 @@ export default function OverOnsPage() {
               
               <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
                 <Image
-                  src="/images/KidsFysioCapelle-De-Praktijk.webp"
+                  src="/images/KidsFysioCapelle-De-praktijk.webp"
                   alt="KidsFysioCapelle-De-Praktijk"
                   fill
                   priority
