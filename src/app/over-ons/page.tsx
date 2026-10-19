@@ -130,7 +130,7 @@ export default function HomePage() {
               
               <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
                 <Image
-                  src="/images/KidsFysioCapelle-De-Praktijk.webp" // <-- Controleer de bestandsextensie (.webp, .jpg of .png)
+                  src="/images/KidsFysioCapelle-De-praktijk.webp" // <-- Controleer de bestandsextensie (.webp, .jpg of .png)
                   alt="KidsFysioCapelle-De-Praktijk"
                   fill
                   priority
