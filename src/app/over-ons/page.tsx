@@ -1,75 +1,57 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import Button from "@/components/Button";
 
 export const metadata: Metadata = {
-  title: {
-    absolute:
-      "Kinderfysiotherapie Capelle aan den IJssel | Kids Fysio Capelle",
-  },
+  title: "Over Kids Fysio Capelle | Praktijk Capelle aan den IJssel",
   description:
-    "Gespecialiseerde kinderfysiotherapie in Capelle aan den IJssel. Ook voor Rotterdam, Barendrecht, Nieuwerkerk en Krimpen. Voor kinderen van 0 tot 18 jaar.",
-  alternates: { canonical: "/" },
+    "Maak kennis met Kids Fysio Capelle. Gespecialiseerde kinderfysiotherapie in Capelle aan den IJssel, speels, veilig en prikkelarm.",
+  alternates: { canonical: "/over-ons/" },
 };
 
-const ageGroups = [
+const team = [
   {
-    href: "/baby-dreumes/",
-    title: "Baby & Dreumes",
-    years: "0-2",
-    description:
-      "Motorische ontwikkeling, voorkeurshoudingen en overstrekking. Met rust en aandacht voor de allerkleinsten.",
+    name: "Mellisa",
+    role: "Praktijkeigenaar & Kinderfysiotherapeut",
+    titles: ["Kinderfysiotherapeut MSc.", "SI-therapeut"],
+    big: "BIG: 89919206204",
+    bio: "Afgestudeerd in 2014 en gespecialiseerd in kinderfysiotherapie sinds 2016. Mijn passie is kinderen het plezier van bewegen te laten ervaren.",
   },
   {
-    href: "/peuters-kleuters/",
-    title: "Peuters & Kleuters",
-    years: "2-4",
-    description:
-      "Evenwicht, coördinatie en de motorische basis voor een soepele start op de basisschool.",
+    name: "Renate",
+    role: "Kinderfysiotherapeut & SI-therapeut",
+    titles: ["Kinderfysiotherapeut MSc.", "SI-therapeut"],
+    big: "BIG: 39921638804",
+    bio: "Ervaren in kinderfysiotherapie met achtergrond in pedagogiek. Gespecialiseerd in sensorische informatieverwerking. Werkdagen: di, do en vr.",
   },
   {
-    href: "/basisschool/",
-    title: "Basisschool",
-    years: "5-12",
-    description:
-      "Schrijfmotoriek, houding, sportblessures en vaardigheden die meedoen vanzelfsprekend maken.",
+    name: "Myrthe",
+    role: "Kinderfysiotherapeut",
+    titles: ["Kinderfysiotherapeut MSc."],
+    big: "BIG: 89927748804",
+    bio: "Recent afgestudeerd in kinderfysiotherapie met veel enthousiasme. Werkzaam op basisscholen, Citykids en in onze praktijk.",
   },
   {
-    href: "/tiener/",
-    title: "Tiener",
-    years: "12-18",
-    description:
-      "Groeigerelateerde klachten, sport en houding. Begeleiding die past bij de puberteit.",
+    name: "Joyce",
+    role: "Teamlid",
+    titles: [],
+    big: "",
+    bio: "Binnenkort meer informatie over Joyce! Ze versterkt ons team in kinderfysiotherapie.",
   },
 ];
 
-const usps = [
-  "Persoonlijke begeleiding en behandelplannen",
-  "Motoriek, balans, grove & fijne motoriek",
-  "Ondersteuning bij prikkelverwerking & concentratie",
-  "Volledig vergoed door de zorgverzekering",
+const uniquePoints = [
+  { title: "Moderne locatie", text: "Vier behandelkamers en een grote, speelse oefenzaal in de wijk Oostgaarde, Capelle aan den IJssel voor optimale kinderfysiotherapie.", icon: "🏠" },
+  { title: "Kindvriendelijke omgeving", text: "Speciaal ingericht zodat kinderen zich direct veilig en op hun gemak voelen tijdens kinderfysiotherapie.", icon: "🧸" },
+  { title: "Persoonlijke aanpak", text: "Ieder kind is uniek, daarom werken we met persoonlijke behandelplannen binnen de kinderfysiotherapie.", icon: "🎯" },
+  { title: "Vertrouwensband", text: "We investeren in een goede relatie met uw kind voor een optimale kinderfysiotherapie behandeling.", icon: "🤝" },
 ];
 
-const pillars = [
-  { title: "Gespecialiseerd Kinderteam", text: "Al onze therapeuten zijn BIG-geregistreerd en gespecialiseerd in kinderfysiotherapie." },
-  { title: "4 Behandelruimtes", text: "Vier moderne, prikkelarme behandelkamers voor optimale aandacht en rust." },
-  { title: "Speelse Oefenzaal", text: "Een grote, kindvriendelijke oefenzaal waar bewegen voelt als spelen." },
-  { title: "Van baby tot tiener", text: "Wij begeleiden kinderen in elke ontwikkelfase, van 0 tot 18 jaar." },
-];
-
-const badges = [
-  "Gecertificeerd Kinderteam",
-  "Veilige spelomgeving",
-  "Bewezen resultaten",
-  "Vergoeding door zorgverzekering",
-];
-
-export default function HomePage() {
+export default function OverOnsPage() {
   return (
     <>
-      {/* 1. Split-Screen Hero (High-End Editorial) */}
+      {/* 1. Split-Screen Hero (behouden, met Over ons tekst) */}
       <section className="relative w-full bg-cream pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
           
@@ -78,28 +60,28 @@ export default function HomePage() {
             <FadeIn>
               <p className="text-[0.7rem] font-medium tracking-[0.28em] uppercase text-sage mb-6 flex items-center gap-2">
                 <span className="w-8 h-[1px] bg-sage inline-block"></span>
-                Kinderfysiotherapie Capelle
+                De Praktijk
               </p>
             </FadeIn>
             
             <FadeIn delay={0.12}>
               <h1 className="font-serif text-[clamp(3.25rem,6vw,5.5rem)] font-light leading-[1.05] tracking-[-0.03em] text-charcoal mb-8">
-                Spelend
+                Over ons
                 <br />
-                <em className="italic font-light">in beweging</em>
+                <em className="italic font-light">verhaal</em>
               </h1>
             </FadeIn>
             
             <FadeIn delay={0.28}>
               <p className="text-[1.05rem] lg:text-lg text-muted max-w-md leading-[1.8] font-light mb-10">
-                Gespecialiseerde kinderfysiotherapie voor kinderen van 0 tot 18 jaar. Met aandacht, rust en plezier in onze moderne praktijk in Oostgaarde.
+                Gespecialiseerde kinderfysiotherapie in Capelle aan den IJssel. Spelenderwijs in beweging, van baby tot tiener.
               </p>
             </FadeIn>
             
             <FadeIn delay={0.4}>
               <div className="flex flex-wrap items-center gap-5">
                 <Button href="/contact/" variant="primary" size="lg">
-                  Maak direct een afspraak
+                  Maak een afspraak
                 </Button>
                 <Button
                   href="/behandelingen/"
@@ -111,7 +93,6 @@ export default function HomePage() {
               </div>
             </FadeIn>
 
-            {/* Trust-indicator */}
             <FadeIn delay={0.5}>
               <div className="mt-10 flex items-center gap-3 text-sm text-muted font-light">
                 <span className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-mint/20 text-brand-primary">
@@ -125,12 +106,11 @@ export default function HomePage() {
           {/* Rechterkant: Afbeelding */}
           <div className="relative w-full">
             <FadeIn delay={0.2} direction="left">
-              {/* Decoratieve vorm achter de afbeelding */}
               <div className="absolute -inset-4 bg-brand-mint/10 rounded-[2.5rem] transform rotate-2 blur-lg"></div>
               
               <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
                 <Image
-                  src="/images/KidsFysioCapelle-De-praktijk.webp" // <-- Controleer de bestandsextensie (.webp, .jpg of .png)
+                  src="/images/KidsFysioCapelle-De-Praktijk.webp"
                   alt="KidsFysioCapelle-De-Praktijk"
                   fill
                   priority
@@ -144,141 +124,158 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Age groups */}
-      <section className="py-28 lg:py-36 bg-warm-gray">
+      {/* 2. Moderne praktijk in Oostgaarde */}
+      <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <FadeIn>
-            <div className="max-w-xl mb-20 lg:mb-28">
-              <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
-                Ontwikkelfasen
-              </p>
-              <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
-                Afgestemd op
-                <br />
-                <em className="italic">elke leeftijd</em>
-              </h2>
-            </div>
-          </FadeIn>
-
-          <div className="space-y-0">
-            {ageGroups.map((group, i) => (
-              <FadeIn key={group.href} delay={i * 0.06}>
-                <Link
-                  href={group.href}
-                  className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 lg:py-12 border-t border-charcoal/10 hover:border-forest/30 transition-colors duration-500"
-                >
-                  <div className="md:col-span-2">
-                    <span className="text-[0.7rem] font-medium tracking-[0.18em] uppercase text-sage">
-                      {group.years} jaar
-                    </span>
-                  </div>
-                  <div className="md:col-span-4">
-                    <h3 className="font-serif text-2xl lg:text-3xl font-light text-charcoal group-hover:text-forest transition-colors duration-500">
-                      {group.title}
-                    </h3>
-                  </div>
-                  <div className="md:col-span-5">
-                    <p className="text-muted leading-relaxed font-light max-w-md">
-                      {group.description}
-                    </p>
-                  </div>
-                  <div className="md:col-span-1 flex md:justify-end items-start pt-1">
-                    <span className="text-sage opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-500 text-lg">
-                      →
-                    </span>
-                  </div>
-                </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+            <div className="lg:col-span-5">
+              <FadeIn>
+                <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
+                  Onze praktijk
+                </p>
+                <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
+                  Een plek waar kinderen
+                  <br />
+                  <em className="italic">zich thuis voelen</em>
+                </h2>
               </FadeIn>
-            ))}
-            <div className="border-t border-charcoal/10" />
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7">
+              <FadeIn delay={0.15}>
+                <p className="text-muted text-lg leading-[1.8] font-light">
+                  Kids Fysio Capelle is gevestigd in de wijk Oostgaarde in Capelle aan den IJssel. In onze praktijk aan De Linie beschikken wij over een moderne, ruime locatie met vier behandelkamers en een grote, speelse oefenzaal voor kinderfysiotherapie.
+                </p>
+                <p className="mt-6 text-muted leading-[1.8] font-light">
+                  Deze omgeving is speciaal ingericht zodat kinderen zich direct veilig en op hun gemak voelen. Vaak zien we dat spanning voor een medische afspraak al in de eerste minuten verdwijnt. Kinderen stappen spelenderwijs binnen en voelen zich meteen thuis.
+                </p>
+                <p className="mt-6 text-muted leading-[1.8] font-light">
+                  Onze kinderfysiotherapie praktijk is ontworpen met oog voor de belevingswereld van kinderen. Kleuren, materialen en indeling zijn allemaal afgestemd op de jonge bezoeker.
+                </p>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Gespecialiseerde Kinderfysiotherapie & CTA */}
+      {/* 3. Ons gespecialiseerde team */}
+      <section className="py-28 lg:py-36 bg-warm-gray">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <FadeIn>
+            <div className="max-w-2xl mb-16 lg:mb-24">
+              <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
+                Ons team
+              </p>
+              <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
+                Maak kennis met onze <em className="italic">specialisten</em>
+              </h2>
+              <p className="mt-6 text-muted text-lg leading-[1.8] font-light">
+                Maak kennis met onze gepassioneerde kinderfysiotherapeuten die klaar staan voor uw kind in Capelle aan den IJssel.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {team.map((member, i) => (
+              <FadeIn key={member.name} delay={i * 0.1}>
+                <div className="bg-white rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-charcoal/5 h-full flex flex-col">
+                  {/* Placeholder voor portretfoto */}
+                  <div className="aspect-[4/5] bg-brand-light flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-brand-primary/5"></div>
+                    <span className="font-serif text-6xl text-brand-primary/30">
+                      {member.name.charAt(0)}
+                    </span>
+                  </div>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="font-serif text-2xl font-light text-charcoal">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm font-semibold text-brand-primary mt-1 mb-4">
+                      {member.role}
+                    </p>
+                    
+                    <div className="space-y-1 mb-4">
+                      {member.titles.map((title) => (
+                        <p key={title} className="text-xs text-muted font-medium">
+                          {title}
+                        </p>
+                      ))}
+                      {member.big && (
+                        <p className="text-xs text-muted/70 font-light mt-2">
+                          {member.big}
+                        </p>
+                      )}
+                    </div>
+                    
+                    <p className="text-sm text-muted leading-relaxed font-light mt-auto">
+                      {member.bio}
+                    </p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Bewegen met plezier */}
       <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            {/* Tekst & USPs */}
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-2xl shadow-charcoal/10">
+              <Image
+                src="/images/KidsFysioCapelle-behandeling.webp"
+                alt="Kinderfysiotherapie behandeling bij Kids Fysio Capelle"
+                fill
+                className="object-cover transition-transform duration-700 hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
+
+            <div className="lg:col-span-6 lg:col-start-7">
               <FadeIn>
                 <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
-                  Gespecialiseerde zorg
+                  Onze filosofie
                 </p>
-                <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1] mb-8">
-                  Kinderfysiotherapie in <em className="italic">Capelle aan den IJssel</em>
+                <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal mb-8 leading-[1.1]">
+                  Bewegen met <em className="italic">plezier</em>
                 </h2>
-                <p className="text-muted text-lg leading-[1.8] font-light mb-10 max-w-2xl">
-                  Voor kinderen van 0 tot 18 jaar. Gericht op motoriek, ademhaling, balans, prikkelverwerking en gezonde ontwikkeling. Altijd met plezier, vertrouwen en vooruitgang als basis.
+                <p className="text-muted leading-[1.8] font-light text-lg mb-6">
+                  Bij Kids Fysio Capelle draait alles om bewegen met plezier. Ieder kind is anders, daarom combineren wij onze professionele expertise met creativiteit, passend oefenmateriaal en persoonlijke aandacht.
                 </p>
-                <ul className="space-y-4">
-                  {usps.map((usp) => (
-                    <li key={usp} className="flex items-center gap-4 text-charcoal font-light">
-                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-brand-light text-brand-primary flex-shrink-0">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
-                      </span>
-                      {usp}
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-muted leading-[1.8] font-light text-lg">
+                  We investeren bewust in het opbouwen van een vertrouwensband met uw kind, zodat hij of zij gemotiveerd raakt om actief te oefenen. Zo maken we samen stap voor stap vooruitgang met plezier, veiligheid en vertrouwen voorop.
+                </p>
               </FadeIn>
             </div>
-
-            {/* CTA Kaart */}
-            <div className="lg:col-span-5">
-              <FadeIn delay={0.15}>
-                <div className="bg-brand-dark rounded-[2rem] p-10 lg:p-12 text-center shadow-2xl shadow-brand-dark/20 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-brand-mint/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-                  <h3 className="font-serif text-2xl text-white mb-4">
-                    Maak direct een afspraak
-                  </h3>
-                  <p className="text-white/70 font-light mb-8">
-                    Geen verwijzing nodig. Wij denken graag met u mee.
-                  </p>
-                  <a 
-                    href="tel:0103032575" 
-                    className="inline-flex items-center justify-center w-full py-4 rounded-full bg-brand-mint text-brand-dark font-nunito font-bold text-lg shadow-lg transition-transform hover:-translate-y-1 hover:bg-white"
-                  >
-                    Bel 010 303 2575
-                  </a>
-                  <p className="mt-4 text-xs text-brand-mint/80 font-medium tracking-wide uppercase">
-                    Meestal direct bereikbaar
-                  </p>
-                </div>
-              </FadeIn>
-            </div>
-
           </div>
         </div>
       </section>
 
-      {/* 4. Waarom Kids Fysio Capelle */}
+      {/* 5. Wat onze praktijk bijzonder maakt */}
       <section className="py-28 lg:py-36 bg-warm-gray">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-2xl mx-auto text-center mb-16 lg:mb-24">
               <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
                 Waarom wij
               </p>
               <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
-                Waarom ouders <em className="italic">voor ons kiezen</em>
+                Wat onze praktijk <em className="italic">bijzonder maakt</em>
               </h2>
             </div>
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {pillars.map((pillar, i) => (
-              <FadeIn key={pillar.title} delay={i * 0.1}>
+            {uniquePoints.map((point, i) => (
+              <FadeIn key={point.title} delay={i * 0.1}>
                 <div className="bg-white p-8 rounded-[1.5rem] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border border-charcoal/5 h-full">
-                  <div className="w-12 h-12 bg-brand-light rounded-full flex items-center justify-center text-brand-primary font-serif text-xl font-bold mb-6">
-                    0{i + 1}
-                  </div>
+                  <div className="text-4xl mb-6">{point.icon}</div>
                   <h3 className="font-serif text-xl font-light text-charcoal mb-3">
-                    {pillar.title}
+                    {point.title}
                   </h3>
                   <p className="text-muted text-sm leading-relaxed font-light">
-                    {pillar.text}
+                    {point.text}
                   </p>
                 </div>
               </FadeIn>
@@ -287,64 +284,74 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Visual moment met Badges */}
-      <section className="relative py-28 lg:py-36 bg-cream overflow-hidden">
+      {/* 6. Locatie */}
+      <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <FadeIn>
-              <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl">
-                {/* HIER IS DE FIX TOEGEPAST: 'prakijkruimte' */}
-                <Image
-                  src="/images/KidsFysioCapelle-prakijkruimte.webp"
-                  alt="Praktijkruimte Kids Fysio Capelle"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.15}>
-              <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1] mb-8">
-                Onze kindvriendelijke <em className="italic">praktijkruimte</em>
-              </h2>
-              <p className="text-muted text-lg leading-relaxed font-light mb-10">
-                Met vier moderne behandelkamers en een grote oefenzaal groeit ieder kind op zijn eigen tempo, stap voor stap, met plezier.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {badges.map((badge) => (
-                  <div key={badge} className="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-charcoal/5">
-                    <span className="text-sage">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
-                    </span>
-                    <span className="text-sm font-semibold text-charcoal">{badge}</span>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            <div className="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-2xl shadow-charcoal/10">
+              <Image
+                src="/images/Kids-Fysio-Capelle-wachtkamer.webp"
+                alt="Wachtkamer Kids Fysio Capelle"
+                fill
+                className="object-cover transition-transform duration-700 hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
+
+            <div className="lg:col-span-6 lg:col-start-7">
+              <FadeIn>
+                <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
+                  Locatie
+                </p>
+                <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal mb-6 leading-[1.1]">
+                  Kom een keer langs
+                </h2>
+                <p className="text-muted max-w-lg text-lg leading-[1.8] mb-10 font-light">
+                  Wilt u onze praktijk bezoeken? Neem contact op voor een afspraak of meer informatie. We heten u graag welkom aan De Linie 1D, 2905 AX Capelle aan den IJssel.
+                </p>
+                <Button href="/contact/" variant="primary" size="lg">
+                  Contact & route
+                </Button>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Quiet CTA */}
-      <section className="py-32 lg:py-44 bg-warm-gray">
-        <div className="mx-auto max-w-2xl px-6 text-center">
+      {/* 7. Afsluitende CTA met badges */}
+      <section className="py-28 lg:py-40 bg-brand-dark">
+        <div className="mx-auto max-w-4xl px-6 text-center">
           <FadeIn>
-            <h2 className="font-serif text-[clamp(2.25rem,4vw,3.25rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.15]">
-              Klaar om de eerste
-              <br />
-              <em className="italic">stap te zetten?</em>
+            <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-white leading-[1.1]">
+              Wilt u onze praktijk bezoeken?
             </h2>
-            <p className="mt-8 text-muted text-lg leading-relaxed font-light max-w-md mx-auto">
-              Neem vrijblijvend contact op. Wij denken graag met u mee over de
-              ontwikkeling van uw kind.
+            <p className="mt-6 text-white/70 leading-relaxed font-light text-lg mb-12">
+              Neem contact op voor een afspraak of meer informatie. We heten u graag welkom!
             </p>
-            <div className="mt-12 flex flex-wrap justify-center gap-5">
-              <Button href="/contact/" variant="primary" size="lg">
-                Contact opnemen
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+              {[
+                "Vergoed door alle zorgverzekeraars",
+                "Geen wachtlijst",
+                "Gespecialiseerde kinderfysiotherapeuten",
+                "Kindvriendelijke omgeving"
+              ].map((badge) => (
+                <div key={badge} className="flex items-center gap-3 bg-white/10 p-4 rounded-xl border border-white/10">
+                  <span className="text-brand-mint flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                  </span>
+                  <span className="text-sm font-medium text-white text-left">{badge}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-5">
+              <Button href="/contact/" variant="primary" size="lg" className="bg-brand-mint text-brand-dark hover:bg-white">
+                Afspraak maken
               </Button>
-              <Button href="tel:0103032575" variant="outline" size="lg">
-                010 303 2575
+              <Button href="tel:0103032575" variant="outline" size="lg" className="border-white/30 text-white hover:bg-white hover:text-brand-dark">
+                Bel 010 303 2575
               </Button>
             </div>
           </FadeIn>
