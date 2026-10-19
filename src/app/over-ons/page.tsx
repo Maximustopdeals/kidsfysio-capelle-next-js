@@ -42,10 +42,10 @@ const team = [
 ];
 
 const uniquePoints = [
-  { title: "Moderne locatie", text: "Vier behandelkamers en een grote, speelse oefenzaal in de wijk Oostgaarde, Capelle aan den IJssel voor optimale kinderfysiotherapie.", icon: "🏠" },
-  { title: "Kindvriendelijke omgeving", text: "Speciaal ingericht zodat kinderen zich direct veilig en op hun gemak voelen tijdens kinderfysiotherapie.", icon: "🧸" },
-  { title: "Persoonlijke aanpak", text: "Ieder kind is uniek, daarom werken we met persoonlijke behandelplannen binnen de kinderfysiotherapie.", icon: "🎯" },
-  { title: "Vertrouwensband", text: "We investeren in een goede relatie met uw kind voor een optimale kinderfysiotherapie behandeling.", icon: "🤝" },
+  { title: "Moderne locatie", text: "Vier behandelkamers en een grote, speelse oefenzaal in de wijk Oostgaarde, Capelle aan den IJssel voor optimale kinderfysiotherapie.", type: "location" },
+  { title: "Kindvriendelijke omgeving", text: "Speciaal ingericht zodat kinderen zich direct veilig en op hun gemak voelen tijdens kinderfysiotherapie.", type: "heart" },
+  { title: "Persoonlijke aanpak", text: "Ieder kind is uniek, daarom werken we met persoonlijke behandelplannen binnen de kinderfysiotherapie.", type: "user" },
+  { title: "Vertrouwensband", text: "We investeren in een goede relatie met uw kind voor een optimale kinderfysiotherapie behandeling.", type: "shield" },
 ];
 
 export default function OverOnsPage() {
@@ -270,7 +270,34 @@ export default function OverOnsPage() {
             {uniquePoints.map((point, i) => (
               <FadeIn key={point.title} delay={i * 0.1}>
                 <div className="bg-white p-8 rounded-[1.5rem] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border border-charcoal/5 h-full">
-                  <div className="text-4xl mb-6">{point.icon}</div>
+                  
+                  {/* High-End Icoon Container */}
+                  <div className="w-14 h-14 bg-brand-light rounded-full flex items-center justify-center text-brand-primary mb-8">
+                    {point.type === "location" && (
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                      </svg>
+                    )}
+                    {point.type === "heart" && (
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                      </svg>
+                    )}
+                    {point.type === "user" && (
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    )}
+                    {point.type === "shield" && (
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M9 12l2 2 4-4" />
+                      </svg>
+                    )}
+                  </div>
+
                   <h3 className="font-serif text-xl font-light text-charcoal mb-3">
                     {point.title}
                   </h3>
