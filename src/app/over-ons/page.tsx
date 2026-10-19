@@ -110,7 +110,7 @@ export default function OverOnsPage() {
               
               <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
                 <Image
-                  src="/images/KidsFysioCapelle-De-praktijk.webp"
+                  src="/images/KidsFysioCapelle-De-Praktijk.webp"
                   alt="KidsFysioCapelle-De-Praktijk"
                   fill
                   priority
@@ -227,7 +227,8 @@ export default function OverOnsPage() {
                 src="/images/KidsFysioCapelle-behandeling.webp"
                 alt="Kinderfysiotherapie behandeling bij Kids Fysio Capelle"
                 fill
-                className="object-cover transition-transform duration-700 hover:scale-105"
+                // HIER IS DE FIX: object-top toegevoegd
+                className="object-cover object-top transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>
