@@ -43,7 +43,7 @@ const partners = [
 ];
 
 const schools = [
-  { name: "PCB De Horizon", logo: "/images/pcb-De-Horizon-Capelle-aan-den-IJssel.webp", link: "https://www.horizoncapelle.nl/" },
+  { name: "PCB De Horizon", logo: "/images/pcb-De-Horizon-Capelle-aan-den-IJssel.png", link: "https://www.horizoncapelle.nl/" },
   { name: "Groen van Prinstererschool", logo: "/images/Groen-van-Prinstererschool.png", link: "https://www.groencapelle.nl/" },
   { name: "OBS De Catamaran", logo: "/images/logo_OBS-catamaran.png", link: "https://www.obsdecatamaran.nl/" },
   { name: "IKC Cornelis Haak", logo: "/images/IKC-Cornelis-Haak.png", link: "https://ikccornelishaak.nl/" },
@@ -143,16 +143,17 @@ export default function SamenwerkingenPage() {
                   rel="noopener noreferrer"
                   className="group flex flex-col h-full bg-white rounded-[1.5rem] p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border border-charcoal/5"
                 >
-                  <div className="w-20 h-20 bg-brand-light rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden">
+                  {/* Logo Container - ALTIJD IN KLEUR */}
+                  <div className="w-24 h-24 bg-white border border-charcoal/5 rounded-2xl flex items-center justify-center mb-6 relative overflow-hidden transition-transform duration-500 group-hover:scale-105">
                     {partner.logo ? (
                        <Image 
                          src={partner.logo} 
                          alt={partner.name} 
                          fill 
-                         className="object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-500" 
+                         className="object-contain p-3" 
                        />
                     ) : (
-                      <span className="font-serif text-3xl text-brand-primary/50 font-bold">
+                      <span className="font-serif text-3xl text-brand-primary font-bold">
                         {partner.placeholder}
                       </span>
                     )}
@@ -198,9 +199,10 @@ export default function SamenwerkingenPage() {
                   href={school.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group flex flex-col items-center justify-center bg-white rounded-2xl p-6 h-32 lg:h-40 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500 border border-charcoal/5"
+                  className="group flex items-center justify-center bg-white rounded-2xl p-6 h-32 lg:h-40 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 border border-charcoal/5"
                 >
-                  <div className="relative w-full h-full grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                  {/* Logo Container - ALTIJD IN KLEUR */}
+                  <div className="relative w-full h-full transition-transform duration-500 group-hover:scale-105">
                     <Image 
                       src={school.logo} 
                       alt={school.name} 
