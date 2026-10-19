@@ -8,7 +8,8 @@ interface PageHeroProps {
 
 export default function PageHero({ eyebrow, title, subtitle }: PageHeroProps) {
   return (
-    <section className="pt-36 lg:pt-44 pb-20 lg:pb-28 bg-warm-gray">
+    // Padding-top flink verlaagd voor een strakkere aansluiting op de header
+    <section className="pt-16 lg:pt-24 pb-16 lg:pb-24 bg-warm-gray">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <FadeIn>
           {eyebrow && (
@@ -16,11 +17,14 @@ export default function PageHero({ eyebrow, title, subtitle }: PageHeroProps) {
               {eyebrow}
             </p>
           )}
-          <h1 className="font-serif text-[clamp(2.75rem,5.5vw,4.5rem)] font-light tracking-[-0.03em] text-charcoal max-w-3xl leading-[1.05]">
+          
+          {/* max-w-5xl geeft de titel meer ademruimte */}
+          <h1 className="font-serif text-[clamp(2.75rem,5.5vw,4.5rem)] font-light tracking-[-0.03em] text-charcoal max-w-5xl leading-[1.05]">
             {title}
           </h1>
+          
           {subtitle && (
-            <p className="mt-8 text-muted text-lg max-w-xl leading-[1.8] font-light">
+            <p className="mt-8 text-muted text-lg max-w-2xl leading-[1.8] font-light">
               {subtitle}
             </p>
           )}
