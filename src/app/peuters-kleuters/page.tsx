@@ -82,18 +82,18 @@ export default function PeutersKleutersPage() {
             </FadeIn>
           </div>
 
-          {/* Rechterkant: Afbeelding */}
+          {/* Rechterkant: Afbeelding (Nu staand formaat, focus op bovenkant) */}
           <div className="relative w-full">
             <FadeIn delay={0.2} direction="left">
               <div className="absolute -inset-4 bg-brand-mint/10 rounded-[2.5rem] transform rotate-2 blur-lg"></div>
               
-              <div className="relative aspect-[4/3] lg:aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
+              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
                 <Image
                   src="/images/KidsFysioCapelle-behandeling.webp"
                   alt="Kinderfysiotherapie behandeling bij Kids Fysio Capelle"
                   fill
                   priority
-                  className="object-cover object-center"
+                  className="object-cover object-[50%_20%] transition-transform duration-700 hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
