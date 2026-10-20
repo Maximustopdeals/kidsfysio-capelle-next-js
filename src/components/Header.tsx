@@ -53,20 +53,17 @@ export default function Header() {
   return (
     <div className="sticky top-0 z-[1000] w-full flex flex-col">
       
-      {/* ─── TOPBAR (Minimalistisch & Luxe) ─── */}
+      {/* ─── TOPBAR ─── */}
       <div className="bg-sage text-forest text-[0.65rem] sm:text-xs py-2.5 px-6 lg:px-12 grid grid-cols-3 items-center font-bold tracking-[0.15em] uppercase">
-        {/* Links: Instagram */}
         <a className="hover:text-charcoal transition-colors flex items-center gap-2 justify-self-start" href="https://www.instagram.com/kidsfysiocapelle/" target="_blank" rel="noopener noreferrer" aria-label="Volg ons op Instagram">
           <InstagramIcon />
           <span className="hidden sm:inline">@kidsfysiocapelle</span>
         </a>
         
-        {/* Midden: Slogan */}
         <span className="hidden md:block text-center truncate">
           Samen maken we bewegen weer leuk
         </span>
         
-        {/* Rechts: Leeg voor perfecte centrering */}
         <div className="justify-self-end"></div>
       </div>
 
@@ -78,9 +75,9 @@ export default function Header() {
           <div className="flex justify-start">
             <Link href="/" className="relative z-10 shrink-0" aria-label="Kids Fysio Capelle - Home">
               <Image 
-                src="/images/Logo_Kids_Fysio_Capelle.png" // <-- HIER IS DE FIX TOEGEPAST
+                src="/images/Logo_Kids_Fysio_Capelle.png" 
                 alt="Kids Fysio Capelle" 
-                width={220} // Iets breder voor een mooiere verhouding
+                width={220} 
                 height={90} 
                 className="h-10 lg:h-14 w-auto object-contain transition-transform hover:scale-105" 
                 priority 
@@ -94,14 +91,23 @@ export default function Header() {
               const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
               return (
                 <div key={item.name} className="relative group" onMouseEnter={() => item.children && setActiveDropdown(item.name)} onMouseLeave={() => setActiveDropdown(null)}>
-                  <Link href={item.href} className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}>
-                    {item.name}
-                    {item.children && (
+                  
+                  {/* Als het item children heeft, render een button. Anders een Link. */}
+                  {item.children ? (
+                    <button 
+                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                      className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                    >
+                      {item.name}
                       <svg className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.name ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
-                    )}
-                  </Link>
+                    </button>
+                  ) : (
+                    <Link href={item.href} className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}>
+                      {item.name}
+                    </Link>
+                  )}
 
                   {/* Dropdown */}
                   {item.children && (
@@ -138,14 +144,23 @@ export default function Header() {
         <div className={`lg:hidden absolute top-full left-0 w-full bg-cream border-t border-charcoal/5 shadow-xl transition-all duration-300 ease-in-out origin-top ${mobileOpen ? "opacity-100 scale-y-100 visible" : "opacity-0 scale-y-95 invisible"}`}>
           <div className="px-6 py-8 space-y-2 max-h-[calc(100vh-100px)] overflow-y-auto">
             {navigation.map((item) => (
-              <div key={item.name}>
-                <Link href={item.href} onClick={() => setMobileOpen(false)} className="block px-4 py-3 rounded-xl font-nunito font-bold text-sm uppercase tracking-wide text-charcoal hover:bg-sage/10 hover:text-forest transition-colors text-center">
-                  {item.name}
-                </Link>
+              <div key={item.name} className="mb-2">
+                {/* Mobiel: Als het item children heeft, toon een niet-klikbare titel */}
+                {item.children ? (
+                  <div className="block px-4 py-3 font-nunito font-bold text-sm uppercase tracking-wide text-muted text-center bg-charcoal/5 rounded-xl">
+                    {item.name}
+                  </div>
+                ) : (
+                  <Link href={item.href} onClick={() => setMobileOpen(false)} className="block px-4 py-3 rounded-xl font-nunito font-bold text-sm uppercase tracking-wide text-charcoal hover:bg-sage/10 hover:text-forest transition-colors text-center">
+                    {item.name}
+                  </Link>
+                )}
+                
+                {/* Mobiele sub-links */}
                 {item.children && (
-                  <div className="pl-4 mt-1 space-y-1 border-l border-sage/30 ml-4">
+                  <div className="mt-2 space-y-1">
                     {item.children.map((child) => (
-                      <Link key={child.name} href={child.href} onClick={() => setMobileOpen(false)} className="block px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-muted hover:text-forest hover:bg-sage/10 transition-colors text-center">
+                      <Link key={child.name} href={child.href} onClick={() => setMobileOpen(false)} className="block px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-charcoal hover:text-forest hover:bg-sage/10 transition-colors text-center">
                         {child.name}
                       </Link>
                     ))}
