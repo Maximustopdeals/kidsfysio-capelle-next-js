@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import FadeIn from "@/components/FadeIn";
 import Button from "@/components/Button";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
-  title: "Reviews",
+  title: "Reviews | Kids Fysio Capelle",
   description:
-    "Lees de ervaringen van ouders over Kids Fysio Capelle. Echte reviews over kinderfysiotherapie in Capelle aan den IJssel.",
+    "Lees de ervaringen van ouders over Kids Fysio Capelle. Echte Google reviews over kinderfysiotherapie in Capelle aan den IJssel.",
   alternates: { canonical: "/reviews/" },
 };
-
-const reviews = [
-  { text: "Onze zoon ging met veel plezier naar de behandelingen. De therapeuten zijn deskundig, geduldig en leggen alles helder uit. We zagen snel vooruitgang.", author: "Ouder van een basisschoolkind" },
-  { text: "Fijne, rustige praktijk. Onze baby werd goed begeleid bij de voorkeurshouding. We kregen duidelijke tips voor thuis. Aanrader!", author: "Ouder van een baby" },
-  { text: "Eindelijk iemand die écht naar ons kind keek. Geen standaardtraject, maar zorg op maat. De oefenzaal is top en de sfeer is warm.", author: "Ouder van een peuter" },
-  { text: "Na een sportblessure was onze tiener snel weer op de been. Duidelijke uitleg, goede oefeningen en prettige begeleiding.", author: "Ouder van een tiener" },
-];
 
 export default function ReviewsPage() {
   return (
@@ -26,27 +20,25 @@ export default function ReviewsPage() {
         subtitle="Echte ervaringen van ouders die hun kind bij ons hebben laten behandelen."
       />
 
-      <section className="py-28 lg:py-36 bg-cream">
+      {/* Elfsight Google Reviews Widget */}
+      <section className="py-20 lg:py-28 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 lg:gap-y-24">
-            {reviews.map((r, i) => (
-              <FadeIn key={i} delay={i * 0.06}>
-                <blockquote className="group border-t border-charcoal/10 pt-8 transition-colors duration-500 hover:border-forest/40">
-                  <p className="text-charcoal leading-[1.8] font-light text-lg lg:text-xl">
-                    “{r.text}”
-                  </p>
-                  <footer className="mt-6">
-                    <span className="inline-block text-[0.75rem] font-medium tracking-[0.15em] uppercase text-sage">
-                      {r.author}
-                    </span>
-                  </footer>
-                </blockquote>
-              </FadeIn>
-            ))}
-          </div>
+          <FadeIn>
+            <div 
+              className="elfsight-app-4390dd71-9bdd-4665-a83a-0eb6a2efb9e6" 
+              data-elfsight-app-lazy
+            />
+          </FadeIn>
         </div>
       </section>
 
+      {/* Laad het Elfsight platform script */}
+      <Script 
+        src="https://elfsightcdn.com/platform.js" 
+        strategy="lazyOnload"
+      />
+
+      {/* CTA Section */}
       <section className="py-28 lg:py-40 bg-warm-gray">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <FadeIn>
