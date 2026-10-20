@@ -115,13 +115,15 @@ export default function BabyDreumesPage() {
             <FadeIn delay={0.2} direction="left">
               <div className="absolute -inset-4 bg-brand-mint/10 rounded-[2.5rem] transform rotate-2 blur-lg"></div>
               
-              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
+              {/* AANGEPAST: aspect-[4/3] in plaats van [4/5] voor een betere uitsnede */}
+              <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
                 <Image
                   src="/images/Kinderfysiotherapeut-begeleidt-een-baby-tijdens-een-oefening-op-een-speelmat.jpg"
                   alt="Kinderfysiotherapeut begeleidt een baby tijdens een oefening op een speelmat bij Kids Fysio Capelle"
                   fill
                   priority
-                  className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                  quality={100} // Maximale scherpte
+                  className="object-cover object-[50%_30%]" // Focus iets naar boven voor de gezichten
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
