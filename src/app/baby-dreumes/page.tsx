@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import Button from "@/components/Button";
-import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Baby fysiotherapie Capelle aan den IJssel | 0-2 jaar",
@@ -52,26 +51,80 @@ const complex = [
 export default function BabyDreumesPage() {
   return (
     <>
-      <PageHero
-        eyebrow="0-2 jaar"
-        title={<>Baby & <em className="italic">Dreumes</em></>}
-        subtitle="Professionele begeleiding bij motorische ontwikkeling, voorkeurshoudingen en overstrekking, afgestemd op de allerkleinsten."
-      />
+      {/* 1. Split-Screen Hero (High-End Editorial) */}
+      <section className="relative w-full bg-cream pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+          
+          {/* Linkerkant: Tekst */}
+          <div className="flex flex-col items-start z-10">
+            <FadeIn>
+              <p className="text-[0.7rem] font-medium tracking-[0.28em] uppercase text-sage mb-6 flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-sage inline-block"></span>
+                0-2 jaar
+              </p>
+            </FadeIn>
+            
+            <FadeIn delay={0.12}>
+              <h1 className="font-serif text-[clamp(3.25rem,6vw,5.5rem)] font-light leading-[1.05] tracking-[-0.03em] text-charcoal mb-8">
+                Baby & 
+                <br />
+                <em className="italic font-light">Dreumes</em>
+              </h1>
+            </FadeIn>
+            
+            <FadeIn delay={0.28}>
+              <p className="text-[1.05rem] lg:text-lg text-muted max-w-md leading-[1.8] font-light mb-10">
+                Professionele begeleiding bij motorische ontwikkeling, voorkeurshoudingen en overstrekking, afgestemd op de allerkleinsten.
+              </p>
+            </FadeIn>
+            
+            <FadeIn delay={0.4}>
+              <div className="flex flex-wrap items-center gap-5">
+                <Button href="/contact/" variant="primary" size="lg">
+                  Afspraak maken
+                </Button>
+                <Button
+                  href="/behandelingen/"
+                  variant="outline"
+                  size="lg"
+                >
+                  Alle behandelingen
+                </Button>
+              </div>
+            </FadeIn>
 
-      {/* Photo moment */}
-      <section className="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
-        <Image
-          src="/images/Kinderfysiotherapeut-begeleidt-een-baby-tijdens-een-oefening-op-een-speelmat.jpg"
-          alt="Kinderfysiotherapeut begeleidt een baby tijdens een oefening op een speelmat bij Kids Fysio Capelle"
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent" />
+            <FadeIn delay={0.5}>
+              <div className="mt-10 flex items-center gap-3 text-sm text-muted font-light">
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-mint/20 text-brand-primary">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                </span>
+                Geen verwijzing nodig
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* Rechterkant: Afbeelding */}
+          <div className="relative w-full">
+            <FadeIn delay={0.2} direction="left">
+              <div className="absolute -inset-4 bg-brand-mint/10 rounded-[2.5rem] transform rotate-2 blur-lg"></div>
+              
+              <div className="relative aspect-[4/3] lg:aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
+                <Image
+                  src="/images/Kinderfysiotherapeut-begeleidt-een-baby-tijdens-een-oefening-op-een-speelmat.jpg"
+                  alt="Kinderfysiotherapeut begeleidt een baby tijdens een oefening op een speelmat bij Kids Fysio Capelle"
+                  fill
+                  priority
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </FadeIn>
+          </div>
+
+        </div>
       </section>
 
-      {/* Waarom vroeg starten */}
+      {/* 2. Waarom vroeg starten */}
       <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
@@ -108,7 +161,7 @@ export default function BabyDreumesPage() {
         </div>
       </section>
 
-      {/* Onze aanpak */}
+      {/* 3. Onze aanpak */}
       <section className="py-28 lg:py-36 bg-warm-gray">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
@@ -140,7 +193,7 @@ export default function BabyDreumesPage() {
         </div>
       </section>
 
-      {/* Indicaties */}
+      {/* 4. Indicaties */}
       <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -186,7 +239,7 @@ export default function BabyDreumesPage() {
         </div>
       </section>
 
-      {/* Complexere aandoeningen */}
+      {/* 5. Complexere aandoeningen */}
       <section className="py-28 lg:py-36 bg-warm-gray">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
@@ -212,7 +265,7 @@ export default function BabyDreumesPage() {
         </div>
       </section>
 
-      {/* Call to action */}
+      {/* 6. Call to action */}
       <section className="py-28 lg:py-40 bg-cream">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <FadeIn>
