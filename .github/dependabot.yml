@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Maak maximaal 5 pull requests tegelijk aan (voorkomt chaos)
+    open-pull-requests-limit: 5
+    # Voeg automatisch labels toe aan de PR's voor overzicht
+    labels:
+      - "dependencies"
+      - "security"
+    # Groepeer updates: 1 PR voor alle kleine updates, 1 PR voor dev-dependencies
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
