@@ -41,6 +41,7 @@ function InstagramIcon({ size = 16 }: { size?: number }) {
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null); // Voor mobiel accordion
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -49,6 +50,12 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Sluit het mobiele menu automatisch als de route verandert
+  useEffect(() => {
+    setMobileOpen(false);
+    setMobileDropdown(null);
+  }, [pathname]);
 
   return (
     <div className="sticky top-0 z-[1000] w-full flex flex-col">
@@ -92,7 +99,6 @@ export default function Header() {
               return (
                 <div key={item.name} className="relative group" onMouseEnter={() => item.children && setActiveDropdown(item.name)} onMouseLeave={() => setActiveDropdown(null)}>
                   
-                  {/* Als het item children heeft, render een button. Anders een Link. */}
                   {item.children ? (
                     <button 
                       onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
@@ -130,7 +136,12 @@ export default function Header() {
               Bel ons
             </a>
 
-            <button className="lg:hidden p-2 text-charcoal hover:bg-charcoal/5 rounded-lg transition-colors" aria-label={mobileOpen ? "Menu sluiten" : "Menu openen"} aria-expanded={mobileOpen} onClick={() => setMobileOpen((v) => !v)}>
+            <button 
+              className="lg:hidden p-2 text-charcoal hover:bg-charcoal/5 rounded-lg transition-colors" 
+              aria-label={mobileOpen ? "Menu sluiten" : "Menu openen"} 
+              aria-expanded={mobileOpen} 
+              onClick={() => setMobileOpen((v) => !v)}
+            >
               {mobileOpen ? (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
               ) : (
@@ -139,43 +150,87 @@ export default function Header() {
             </button>
           </div>
         </div>
-
-        {/* Mobiel Menu */}
-        <div className={`lg:hidden absolute top-full left-0 w-full bg-cream border-t border-charcoal/5 shadow-xl transition-all duration-300 ease-in-out origin-top ${mobileOpen ? "opacity-100 scale-y-100 visible" : "opacity-0 scale-y-95 invisible"}`}>
-          <div className="px-6 py-8 space-y-2 max-h-[calc(100vh-100px)] overflow-y-auto">
-            {navigation.map((item) => (
-              <div key={item.name} className="mb-2">
-                {/* Mobiel: Als het item children heeft, toon een niet-klikbare titel */}
-                {item.children ? (
-                  <div className="block px-4 py-3 font-nunito font-bold text-sm uppercase tracking-wide text-muted text-center bg-charcoal/5 rounded-xl">
-                    {item.name}
-                  </div>
-                ) : (
-                  <Link href={item.href} onClick={() => setMobileOpen(false)} className="block px-4 py-3 rounded-xl font-nunito font-bold text-sm uppercase tracking-wide text-charcoal hover:bg-sage/10 hover:text-forest transition-colors text-center">
-                    {item.name}
-                  </Link>
-                )}
-                
-                {/* Mobiele sub-links */}
-                {item.children && (
-                  <div className="mt-2 space-y-1">
-                    {item.children.map((child) => (
-                      <Link key={child.name} href={child.href} onClick={() => setMobileOpen(false)} className="block px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-charcoal hover:text-forest hover:bg-sage/10 transition-colors text-center">
-                        {child.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-            <div className="pt-6 mt-6 border-t border-charcoal/5">
-              <a href="tel:0103032575" className="flex items-center justify-center w-full rounded-xl bg-forest px-5 py-4 font-nunito font-bold text-sm uppercase tracking-wide text-white shadow-lg shadow-forest/20 transition-colors hover:bg-charcoal">
-                Bel ons direct
-              </a>
-            </div>
-          </div>
-        </div>
       </header>
+
+      {/* ─── MOBIEL MENU (High-End Accordion Overlay) ─── */}
+      <div 
+        className={`lg:hidden fixed inset-x-0 top-[108px] bottom-0 bg-cream z-[999] transition-all duration-500 ease-in-out origin-top flex flex-col ${
+          mobileOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 invisible pointer-events-none"
+        }`}
+      >
+        <div className="flex-grow overflow-y-auto px-6 py-8">
+          <ul className="space-y-4">
+            {navigation.map((item) => {
+              const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+              const isDropdownOpen = mobileDropdown === item.name;
+
+              return (
+                <li key={item.name} className="border-b border-charcoal/5 pb-4">
+                  {/* Als het item children heeft, render een accordion button */}
+                  {item.children ? (
+                    <>
+                      <button 
+                        onClick={() => setMobileDropdown(isDropdownOpen ? null : item.name)}
+                        className="flex items-center justify-between w-full text-left font-nunito font-bold text-lg text-charcoal uppercase tracking-wide py-2"
+                      >
+                        {item.name}
+                        <svg 
+                          className={`w-5 h-5 text-sage transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} 
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      
+                      {/* Accordion Content */}
+                      <div 
+                        className={`grid transition-all duration-300 ease-in-out ${
+                          isDropdownOpen ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="flex flex-col space-y-2 pl-4 border-l-2 border-sage/30">
+                            {item.children.map((child) => (
+                              <Link 
+                                key={child.name} 
+                                href={child.href} 
+                                className="block py-2 text-base font-medium text-muted hover:text-forest transition-colors"
+                              >
+                                {child.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    /* Gewone link zonder children */
+                    <Link 
+                      href={item.href} 
+                      className={`block font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
+                        isActive ? "text-sage" : "text-charcoal hover:text-forest"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        {/* Vaste CTA Onderaan het Mobiele Menu */}
+        <div className="p-6 bg-cream border-t border-charcoal/5 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
+          <a 
+            href="tel:0103032575" 
+            className="flex items-center justify-center gap-2 w-full rounded-full bg-forest px-5 py-4 font-nunito font-bold text-sm uppercase tracking-wide text-white shadow-lg shadow-forest/20 transition-transform hover:bg-charcoal active:scale-95"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Bel ons direct
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
