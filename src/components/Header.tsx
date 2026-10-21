@@ -41,7 +41,7 @@ function InstagramIcon({ size = 16 }: { size?: number }) {
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null); // Voor mobiel accordion
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -166,45 +166,31 @@ export default function Header() {
 
               return (
                 <li key={item.name} className="border-b border-charcoal/5 pb-4">
-                  {/* Als het item children heeft, render een accordion button */}
+                  {/* Als het item children heeft, splits in een link en een accordion-knop */}
                   {item.children ? (
-                    <>
-                      <button 
-                        onClick={() => setMobileDropdown(isDropdownOpen ? null : item.name)}
-                        className="flex items-center justify-between w-full text-left font-nunito font-bold text-lg text-charcoal uppercase tracking-wide py-2"
+                    <div className="flex items-center justify-between w-full">
+                      <Link 
+                        href={item.href} 
+                        className={`font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
+                          isActive ? "text-sage" : "text-charcoal hover:text-forest"
+                        }`}
                       >
                         {item.name}
+                      </Link>
+                      <button 
+                        onClick={() => setMobileDropdown(isDropdownOpen ? null : item.name)}
+                        aria-label={`Submenu van ${item.name} ${isDropdownOpen ? "sluiten" : "openen"}`}
+                        className="p-2 -mr-2 text-sage hover:text-forest transition-colors"
+                      >
                         <svg 
-                          className={`w-5 h-5 text-sage transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} 
+                          className={`w-5 h-5 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} 
                           fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                       </button>
-                      
-                      {/* Accordion Content */}
-                      <div 
-                        className={`grid transition-all duration-300 ease-in-out ${
-                          isDropdownOpen ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0"
-                        }`}
-                      >
-                        <div className="overflow-hidden">
-                          <div className="flex flex-col space-y-2 pl-4 border-l-2 border-sage/30">
-                            {item.children.map((child) => (
-                              <Link 
-                                key={child.name} 
-                                href={child.href} 
-                                className="block py-2 text-base font-medium text-muted hover:text-forest transition-colors"
-                              >
-                                {child.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </>
+                    </div>
                   ) : (
-                    /* Gewone link zonder children */
                     <Link 
                       href={item.href} 
                       className={`block font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
@@ -213,6 +199,29 @@ export default function Header() {
                     >
                       {item.name}
                     </Link>
+                  )}
+                  
+                  {/* Accordion Content */}
+                  {item.children && (
+                    <div 
+                      className={`grid transition-all duration-300 ease-in-out ${
+                        isDropdownOpen ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="flex flex-col space-y-2 pl-4 border-l-2 border-sage/30">
+                          {item.children.map((child) => (
+                            <Link 
+                              key={child.name} 
+                              href={child.href} 
+                              className="block py-2 text-base font-medium text-muted hover:text-forest transition-colors"
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </li>
               );
