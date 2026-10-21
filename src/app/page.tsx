@@ -97,8 +97,7 @@ export default function HomePage() {
           </FadeIn>
           <FadeIn delay={0.28}>
             <p className="mt-8 text-[1.05rem] lg:text-lg text-cream/75 max-w-md leading-relaxed font-light">
-              Gespecialiseerde kinderfysiotherapie voor kinderen van 0 tot 18
-              jaar. Met aandacht, rust en plezier.
+              Onze kinderfysiotherapeuten begeleiden kinderen van baby tot tiener met gerichte behandeling, motorische stimulatie en ontwikkeling in beweging.
             </p>
           </FadeIn>
           <FadeIn delay={0.4}>
@@ -186,7 +185,7 @@ export default function HomePage() {
                 <p className="text-muted text-lg leading-[1.8] font-light mb-10 max-w-2xl">
                   Voor kinderen van 0 tot 18 jaar. Gericht op motoriek, ademhaling, balans, prikkelverwerking en gezonde ontwikkeling. Altijd met plezier, vertrouwen en vooruitgang als basis.
                 </p>
-                <ul className="space-y-4">
+                <ul className="space-y-4 mb-10">
                   {usps.map((usp) => (
                     <li key={usp} className="flex items-center gap-4 text-charcoal font-light">
                       <span className="flex items-center justify-center w-6 h-6 rounded-full bg-brand-light text-brand-primary flex-shrink-0">
@@ -196,6 +195,9 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
+                <Button href="/over-ons/" variant="outline">
+                  Over ons
+                </Button>
               </FadeIn>
             </div>
 
@@ -231,13 +233,19 @@ export default function HomePage() {
       <section className="py-28 lg:py-36 bg-warm-gray">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
-            <div className="max-w-2xl mx-auto text-center mb-20">
+            <div className="max-w-3xl mx-auto text-center mb-16">
               <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
                 Waarom wij
               </p>
-              <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
+              <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1] mb-8">
                 Waarom ouders <em className="italic">voor ons kiezen</em>
               </h2>
+              <p className="text-muted text-lg leading-[1.8] font-light">
+                Onze gespecialiseerde kinderfysiotherapeuten begeleiden kinderen in een speelse, veilige en prikkelarme omgeving. Met vier moderne behandelkamers en een grote oefenzaal groeit ieder kind op zijn eigen tempo, stap voor stap, met plezier.
+              </p>
+              <p className="mt-4 text-muted text-lg leading-[1.8] font-light">
+                Ouders ervaren rust, kinderen voelen vertrouwen. Wij denken mee, kijken verder en nemen altijd de tijd voor persoonlijk advies.
+              </p>
             </div>
           </FadeIn>
 
@@ -258,6 +266,14 @@ export default function HomePage() {
               </FadeIn>
             ))}
           </div>
+
+          <FadeIn delay={0.4}>
+            <div className="mt-16 text-center">
+              <Button href="/contact/" variant="primary" size="lg">
+                Afspraak maken
+              </Button>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -267,7 +283,6 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn>
               <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl">
-                {/* HIER IS DE FIX TOEGEPAST: 'praktijkruimte' is nu 'prakijkruimte' */}
                 <Image
                   src="/images/KidsFysioCapelle-prakijkruimte.webp"
                   alt="Praktijkruimte Kids Fysio Capelle"
