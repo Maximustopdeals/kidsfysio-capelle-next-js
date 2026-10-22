@@ -69,40 +69,40 @@ export default function SpecialisatiesPage() {
           
           <div className="flex flex-col items-start z-10">
             <FadeIn>
-              <p className="text-[0.7rem] font-medium tracking-[0.28em] uppercase text-sage mb-6 flex items-center gap-2">
-                <span className="w-8 h-[1px] bg-sage inline-block"></span>
+              <p className="text-[0.7rem] font-bold tracking-[0.28em] uppercase text-forest mb-6 flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-forest inline-block"></span>
                 Expertise
               </p>
             </FadeIn>
             
             <FadeIn delay={0.12}>
-              <h1 className="font-serif text-[clamp(3.25rem,6vw,5.5rem)] font-light leading-[1.05] tracking-[-0.03em] text-charcoal mb-8">
+              <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[1.1] text-forest mb-8">
                 Onze
                 <br />
-                <em className="italic font-light">specialisaties</em>
+                specialisaties
               </h1>
             </FadeIn>
             
             <FadeIn delay={0.28}>
-              <p className="text-[1.05rem] lg:text-lg text-muted max-w-md leading-[1.8] font-light mb-10">
+              <p className="text-lg text-forest/80 max-w-md leading-relaxed mb-10">
                 Naast algemene kinderfysiotherapie bieden wij gerichte specialisaties voor specifieke hulpvraagstukken, zoals SI-therapie.
               </p>
             </FadeIn>
             
             <FadeIn delay={0.4}>
               <div className="flex flex-wrap items-center gap-5">
-                <Button href="/contact/" variant="primary" size="lg">
+                <Button href="/contact/" className="bg-forest text-white hover:bg-charcoal shadow-lg border-none rounded-lg px-8 py-4" size="lg">
                   Afspraak maken
                 </Button>
-                <Button href="/behandelingen/" variant="outline" size="lg">
+                <Button href="/behandelingen/" variant="outline" className="border-forest text-forest hover:bg-forest hover:text-white rounded-lg px-8 py-4" size="lg">
                   Alle behandelingen
                 </Button>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.5}>
-              <div className="mt-10 flex items-center gap-3 text-sm text-muted font-light">
-                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-brand-mint/20 text-brand-primary">
+              <div className="mt-10 flex items-center gap-3 text-sm text-forest/80">
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-sage text-forest">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
                 </span>
                 Geen verwijzing nodig
@@ -112,7 +112,7 @@ export default function SpecialisatiesPage() {
 
           <div className="relative w-full">
             <FadeIn delay={0.2} direction="left">
-              <div className="absolute -inset-4 bg-brand-mint/10 rounded-[2.5rem] transform rotate-2 blur-lg"></div>
+              <div className="absolute -inset-4 bg-sage/20 rounded-[2.5rem] transform rotate-2 blur-lg"></div>
               
               <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
                 <Image
@@ -131,42 +131,32 @@ export default function SpecialisatiesPage() {
         </div>
       </section>
 
-      {/* 2. Lijst met specialisaties */}
+      {/* 2. Lijst met specialisaties (Nu als speelse blokken in de huiskleur) */}
       <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
             <div className="max-w-2xl mb-16 lg:mb-24">
-              <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
+              <p className="text-[0.7rem] font-bold tracking-[0.22em] uppercase text-forest mb-6">
                 Onze expertise
               </p>
-              <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
-                Gespecialiseerde <em className="italic">zorg</em>
+              <h2 className="text-[clamp(2.25rem,4vw,3.5rem)] font-bold text-forest leading-[1.1]">
+                Gespecialiseerde zorg
               </h2>
             </div>
           </FadeIn>
-          <div className="space-y-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {specialisaties.map((s, i) => (
               <FadeIn key={s.title} delay={i * 0.06}>
-                <article className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 lg:py-12 border-t border-charcoal/10 hover:border-forest/40 transition-colors duration-500">
-                  <div className="md:col-span-5">
-                    <h3 className="font-serif text-2xl lg:text-3xl font-light text-charcoal group-hover:text-forest transition-colors duration-300">
-                      {s.title}
-                    </h3>
-                  </div>
-                  <div className="md:col-span-6">
-                    <p className="text-muted leading-relaxed font-light max-w-lg">
-                      {s.text}
-                    </p>
-                  </div>
-                  <div className="md:col-span-1 flex md:justify-end items-start pt-1">
-                    <span className="text-sage opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-500 text-lg">
-                      →
-                    </span>
-                  </div>
-                </article>
+                <div className="group flex flex-col h-full bg-sage rounded-[2rem] p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                  <h3 className="text-2xl font-bold text-forest mb-4 group-hover:text-brand-dark transition-colors">
+                    {s.title}
+                  </h3>
+                  <p className="text-forest/80 leading-relaxed text-sm mb-6 flex-grow">
+                    {s.text}
+                  </p>
+                </div>
               </FadeIn>
             ))}
-            <div className="border-t border-charcoal/10" />
           </div>
         </div>
       </section>
@@ -187,16 +177,16 @@ export default function SpecialisatiesPage() {
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
               <FadeIn>
-                <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
+                <p className="text-[0.7rem] font-bold tracking-[0.22em] uppercase text-forest mb-6">
                   SI-therapie
                 </p>
-                <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal mb-6 leading-[1.1]">
-                  Wat is sensorische <em className="italic">informatieverwerking?</em>
+                <h2 className="text-[clamp(2.25rem,4vw,3.5rem)] font-bold text-forest mb-6 leading-[1.1]">
+                  Wat is sensorische informatieverwerking?
                 </h2>
-                <p className="text-muted leading-[1.8] font-light text-lg mb-6">
+                <p className="text-muted leading-[1.8] text-lg mb-6">
                   Sensorische informatieverwerking (ook wel prikkelverwerking genoemd) is het proces waarbij prikkels die via uw lichaam binnenkomen worden verwerkt in de hersenen. Kinderen met sensorische informatieverwerkingsproblemen hebben zintuigen die niet optimaal samenwerken. SI-therapie helpt hierbij.
                 </p>
-                <p className="text-muted leading-[1.8] font-light text-lg">
+                <p className="text-muted leading-[1.8] text-lg">
                   Wij zijn gespecialiseerde therapeuten en helpen kinderen van 4-18 jaar om de prikkelverwerking te verbeteren met sensorische informatieverwerking (SI) therapie in Capelle aan den IJssel.
                 </p>
               </FadeIn>
@@ -211,26 +201,26 @@ export default function SpecialisatiesPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <FadeIn>
               <div className="flex flex-col items-center">
-                <span className="font-serif text-5xl lg:text-6xl font-light text-brand-primary mb-2">18</span>
-                <span className="text-sm font-medium text-muted uppercase tracking-wider">Behandelingen vergoed</span>
+                <span className="text-5xl lg:text-6xl font-bold text-forest mb-2">18</span>
+                <span className="text-sm font-semibold text-muted uppercase tracking-wider">Behandelingen vergoed</span>
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <div className="flex flex-col items-center">
-                <span className="font-serif text-5xl lg:text-6xl font-light text-brand-primary mb-2">4-18</span>
-                <span className="text-sm font-medium text-muted uppercase tracking-wider">Leeftijd kinderen</span>
+                <span className="text-5xl lg:text-6xl font-bold text-forest mb-2">4-18</span>
+                <span className="text-sm font-semibold text-muted uppercase tracking-wider">Leeftijd kinderen</span>
               </div>
             </FadeIn>
             <FadeIn delay={0.2}>
               <div className="flex flex-col items-center">
-                <span className="font-serif text-5xl lg:text-6xl font-light text-brand-primary mb-2">✓</span>
-                <span className="text-sm font-medium text-muted uppercase tracking-wider">Geen verwijzing nodig</span>
+                <span className="text-5xl lg:text-6xl font-bold text-forest mb-2">✓</span>
+                <span className="text-sm font-semibold text-muted uppercase tracking-wider">Geen verwijzing nodig</span>
               </div>
             </FadeIn>
             <FadeIn delay={0.3}>
               <div className="flex flex-col items-center">
-                <span className="font-serif text-5xl lg:text-6xl font-light text-brand-primary mb-2">100%</span>
-                <span className="text-sm font-medium text-muted uppercase tracking-wider">Persoonlijke aandacht</span>
+                <span className="text-5xl lg:text-6xl font-bold text-forest mb-2">100%</span>
+                <span className="text-sm font-semibold text-muted uppercase tracking-wider">Persoonlijke aandacht</span>
               </div>
             </FadeIn>
           </div>
@@ -242,13 +232,13 @@ export default function SpecialisatiesPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
             <div className="max-w-2xl mb-16">
-              <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
+              <p className="text-[0.7rem] font-bold tracking-[0.22em] uppercase text-forest mb-6">
                 Signalen
               </p>
-              <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal mb-6 leading-[1.1]">
-                Herkenbare signalen bij <em className="italic">SI-problemen</em>
+              <h2 className="text-[clamp(2.25rem,4vw,3.5rem)] font-bold text-forest mb-6 leading-[1.1]">
+                Herkenbare signalen bij SI-problemen
               </h2>
-              <p className="text-muted text-lg leading-[1.8] font-light">
+              <p className="text-muted text-lg leading-[1.8]">
                 Kinderen met sensorische informatieverwerkingsproblemen kunnen verschillende signalen vertonen. Herkent u deze bij uw kind?
               </p>
             </div>
@@ -257,14 +247,14 @@ export default function SpecialisatiesPage() {
             {signals.map((item, i) => (
               <FadeIn key={item} delay={i * 0.03}>
                 <div className="flex items-start gap-3 py-3 border-t border-charcoal/10">
-                  <span className="text-brand-primary text-sm mt-0.5">✓</span>
-                  <span className="text-charcoal font-light text-sm">{item}</span>
+                  <span className="text-forest text-sm mt-0.5">✓</span>
+                  <span className="text-charcoal text-sm">{item}</span>
                 </div>
               </FadeIn>
             ))}
           </div>
           <FadeIn delay={0.3}>
-            <p className="mt-12 text-muted font-light text-sm">
+            <p className="mt-12 text-muted text-sm">
               Herkent u deze signalen? Neem contact op voor een vrijblijvend gesprek over sensorische informatieverwerking (SI) therapie.
             </p>
           </FadeIn>
@@ -276,13 +266,13 @@ export default function SpecialisatiesPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <FadeIn>
             <div className="max-w-2xl mb-16 lg:mb-24">
-              <p className="text-[0.7rem] font-medium tracking-[0.22em] uppercase text-sage mb-6">
+              <p className="text-[0.7rem] font-bold tracking-[0.22em] uppercase text-forest mb-6">
                 Onze aanpak
               </p>
-              <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
-                Onze aanpak bij <em className="italic">SI-therapie</em>
+              <h2 className="text-[clamp(2.25rem,4vw,3.5rem)] font-bold text-forest leading-[1.1]">
+                Onze aanpak bij SI-therapie
               </h2>
-              <p className="mt-6 text-muted text-lg leading-[1.8] font-light">
+              <p className="mt-6 text-muted text-lg leading-[1.8]">
                 Wij werken volgens een bewezen methode die aansluit bij de belevingswereld van uw kind.
               </p>
             </div>
@@ -292,7 +282,7 @@ export default function SpecialisatiesPage() {
             {approach.map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.1}>
                 <div className="bg-white p-8 rounded-[1.5rem] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border border-charcoal/5 h-full">
-                  <div className="w-14 h-14 bg-brand-light rounded-full flex items-center justify-center text-brand-primary mb-8">
+                  <div className="w-14 h-14 bg-sage rounded-full flex items-center justify-center text-forest mb-8">
                     {item.icon === "brain" && (
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
                     )}
@@ -306,8 +296,8 @@ export default function SpecialisatiesPage() {
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
                     )}
                   </div>
-                  <h3 className="font-serif text-xl font-light text-charcoal mb-3">{item.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed font-light">{item.text}</p>
+                  <h3 className="text-xl font-bold text-forest mb-3">{item.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed">{item.text}</p>
                 </div>
               </FadeIn>
             ))}
@@ -319,29 +309,29 @@ export default function SpecialisatiesPage() {
       <section className="py-28 lg:py-40 bg-warm-gray">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <FadeIn>
-            <h2 className="font-serif text-[clamp(2.25rem,4vw,3.5rem)] font-light tracking-[-0.025em] text-charcoal leading-[1.1]">
+            <h2 className="text-[clamp(2.25rem,4vw,3.5rem)] font-bold text-forest leading-[1.1]">
               Heeft uw kind moeite met prikkelverwerking?
             </h2>
-            <p className="mt-6 text-muted leading-relaxed font-light text-lg mb-12">
+            <p className="mt-6 text-muted leading-relaxed text-lg mb-12">
               Onze gespecialiseerde therapeuten helpen uw kind met sensorische informatieverwerking (SI) therapie om beter om te gaan met prikkels en zich optimaal te ontwikkelen.
             </p>
             
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-12">
               {badges.map((badge) => (
                 <div key={badge} className="flex items-center gap-2">
-                  <span className="text-brand-primary flex-shrink-0">
+                  <span className="text-forest flex-shrink-0">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
                   </span>
-                  <span className="text-sm font-medium text-charcoal">{badge}</span>
+                  <span className="text-sm font-semibold text-charcoal">{badge}</span>
                 </div>
               ))}
             </div>
 
             <div className="flex flex-wrap justify-center gap-5">
-              <Button href="/contact/" variant="primary" size="lg">
+              <Button href="/contact/" className="bg-forest text-white hover:bg-charcoal shadow-lg border-none rounded-lg px-8 py-4" size="lg">
                 Afspraak maken
               </Button>
-              <Button href="tel:0103032575" variant="outline" size="lg">
+              <Button href="tel:0103032575" variant="outline" className="border-forest text-forest hover:bg-forest hover:text-white rounded-lg px-8 py-4" size="lg">
                 Bel 010 303 2575
               </Button>
             </div>
