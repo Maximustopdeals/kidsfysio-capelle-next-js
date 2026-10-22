@@ -241,7 +241,7 @@ export default function HomePage() {
                 Waarom ouders <em className="italic">voor ons kiezen</em>
               </h2>
               <p className="text-muted text-lg leading-[1.8] font-light">
-                Onze gespecialiseerde kinderfysiotherapeuten begeleiden kinderen in een speelse, veilige en prikkelarme omgeving. Met vier moderne behandelkamers en een grote oefenzaal groeit ieder kind op zijn eigen tempo, stap voor stap, met plezier.
+                Onze gespecialiseerde kinderfysiotherapeuten begeleiden kinderen in een speelse, veilige en prikkelarme omgeving.
               </p>
               <p className="mt-4 text-muted text-lg leading-[1.8] font-light">
                 Ouders ervaren rust, kinderen voelen vertrouwen. Wij denken mee, kijken verder en nemen altijd de tijd voor persoonlijk advies.
