@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -11,7 +11,6 @@ const navigation = [
     name: "Over ons", 
     href: "/over-ons",
     children: [{ name: "Samenwerkingen", href: "/samenwerkingen" }]
-    // clickable: true (standaard)
   },
   { 
     name: "Behandelingen", 
@@ -22,7 +21,7 @@ const navigation = [
       { name: "Basisschool", href: "/basisschool" },
       { name: "Tiener", href: "/tiener" },
     ],
-    dropdownOnly: true, // <-- deze is niet klikbaar
+    dropdownOnly: true,
   },
   { name: "Reviews", href: "/reviews" },
   { name: "Specialisaties", href: "/specialisaties" },
@@ -46,6 +45,7 @@ export default function Header() {
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -57,6 +57,13 @@ export default function Header() {
     setMobileOpen(false);
     setMobileDropdown(null);
   }, [pathname]);
+
+  const handleHomeClick = (e: React.MouseEvent) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="sticky top-0 z-[1000] w-full flex flex-col">
@@ -72,7 +79,10 @@ export default function Header() {
           Samen maken we bewegen weer leuk
         </span>
         
-        <div className="justify-self-end"></div>
+        {/* E-mailadres terug aan de rechterkant */}
+        <a href="mailto:info@kidsfysiocapelle.nl" className="hover:text-charcoal transition-colors justify-self-end font-semibold">
+          info@kidsfysiocapelle.nl
+        </a>
       </div>
 
       {/* ─── HOOFDNAVIGATIE ─── */}
@@ -81,7 +91,12 @@ export default function Header() {
           
           {/* Links: Logo */}
           <div className="flex justify-start">
-            <Link href="/" className="relative z-10 shrink-0" aria-label="Kids Fysio Capelle - Home">
+            <Link 
+              href="/" 
+              onClick={handleHomeClick}
+              className="relative z-10 shrink-0" 
+              aria-label="Kids Fysio Capelle - Home"
+            >
               <Image 
                 src="/images/Logo_Kids_Fysio_Capelle.png" 
                 alt="Kids Fysio Capelle" 
@@ -109,11 +124,10 @@ export default function Header() {
                 >
                   {hasChildren ? (
                     isDropdownOnly ? (
-                      // Alleen een button: geen link, alleen dropdown openen
                       <button 
                         type="button"
                         onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                        className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                        className={`flex items-center justify-center gap-1.5 py-2 font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
                       >
                         {item.name}
                         <svg 
@@ -124,11 +138,10 @@ export default function Header() {
                         </svg>
                       </button>
                     ) : (
-                      // Link + aparte dropdown-knop
                       <div className="flex items-center gap-2">
                         <Link 
                           href={item.href} 
-                          className={`flex items-center justify-center py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                          className={`flex items-center justify-center py-2 font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
                         >
                           {item.name}
                         </Link>
@@ -149,16 +162,15 @@ export default function Header() {
                       </div>
                     )
                   ) : (
-                    // Gewone link
                     <Link 
                       href={item.href} 
-                      className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                      onClick={item.name === "Home" ? handleHomeClick : undefined}
+                      className={`flex items-center justify-center gap-1.5 py-2 font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
                     >
                       {item.name}
                     </Link>
                   )}
 
-                  {/* Dropdown (voor items met children) */}
                   {hasChildren && (
                     <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 w-52 origin-top rounded-2xl bg-white p-2 shadow-xl shadow-charcoal/5 ring-1 ring-black/5 transition-all duration-300 ${activeDropdown === item.name ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
                       {item.children.map((child) => (
@@ -179,7 +191,7 @@ export default function Header() {
 
           {/* Rechts: CTA & Mobile Toggle */}
           <div className="flex items-center justify-end gap-4">
-            <a href="tel:0103032575" className="hidden lg:inline-flex items-center justify-center rounded-full bg-forest px-6 py-2.5 font-nunito font-bold text-[0.85rem] text-white tracking-wide shadow-lg shadow-forest/20 transition-all hover:-translate-y-0.5 hover:bg-charcoal">
+            <a href="tel:0103032575" className="hidden lg:inline-flex items-center justify-center rounded-full bg-forest px-6 py-2.5 font-bold text-[0.85rem] text-white tracking-wide shadow-lg shadow-forest/20 transition-all hover:-translate-y-0.5 hover:bg-charcoal">
               Bel ons
             </a>
 
@@ -217,11 +229,10 @@ export default function Header() {
                 <li key={item.name} className="border-b border-charcoal/5 pb-4">
                   {hasChildren ? (
                     isDropdownOnly ? (
-                      // Alleen een button: geen link, alleen accordion openen
                       <button 
                         type="button"
                         onClick={() => setMobileDropdown(isDropdownOpen ? null : item.name)}
-                        className={`flex items-center justify-between w-full font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                        className={`flex items-center justify-between w-full font-bold text-lg uppercase tracking-wide py-2 transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
                       >
                         {item.name}
                         <svg 
@@ -232,11 +243,10 @@ export default function Header() {
                         </svg>
                       </button>
                     ) : (
-                      // Link + aparte knop voor accordion
                       <div className="flex items-center justify-between w-full">
                         <Link 
                           href={item.href} 
-                          className={`font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
+                          className={`font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
                             isActive ? "text-sage" : "text-charcoal hover:text-forest"
                           }`}
                         >
@@ -262,10 +272,10 @@ export default function Header() {
                       </div>
                     )
                   ) : (
-                    // Gewone link
                     <Link 
                       href={item.href} 
-                      className={`block font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
+                      onClick={item.name === "Home" ? handleHomeClick : undefined}
+                      className={`block font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
                         isActive ? "text-sage" : "text-charcoal hover:text-forest"
                       }`}
                     >
@@ -300,11 +310,10 @@ export default function Header() {
           </ul>
         </div>
 
-        {/* Vaste CTA Onderaan het Mobiele Menu */}
         <div className="p-6 bg-cream border-t border-charcoal/5 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
           <a 
             href="tel:0103032575" 
-            className="flex items-center justify-center gap-2 w-full rounded-full bg-forest px-5 py-4 font-nunito font-bold text-sm uppercase tracking-wide text-white shadow-lg shadow-forest/20 transition-transform hover:bg-charcoal active:scale-95"
+            className="flex items-center justify-center gap-2 w-full rounded-full bg-forest px-5 py-4 font-bold text-sm uppercase tracking-wide text-white shadow-lg shadow-forest/20 transition-transform hover:bg-charcoal active:scale-95"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             Bel ons direct
