@@ -57,7 +57,7 @@ export default function ReviewsPage() {
               <p className="text-muted">Lees wat anderen over ons zeggen.</p>
             </div>
             <div 
-              className="elfsight-app-4390dd71-9bdd-4665-a83a-0eb6a2efb9e6" 
+              className="elfsight-app-66dd3a10-0173-4b5d-8fe1-d353ebf0d980" 
               data-elfsight-app-lazy
             />
           </FadeIn>
