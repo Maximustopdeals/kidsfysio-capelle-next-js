@@ -59,7 +59,7 @@ export default function FloatingButtons() {
                 <WhatsAppIcon className="w-6 h-6" />
               </div>
               <div className="flex-grow">
-                <h3 className="font-nunito font-extrabold text-forest text-[1.1rem] leading-tight">Kids Fysio Capelle</h3>
+                <h3 className="font-bold text-forest text-[1.1rem] leading-tight">Kids Fysio Capelle</h3>
                 <p className="flex items-center gap-1.5 text-xs text-green-600 font-semibold">
                   <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span> Online
                 </p>
@@ -89,23 +89,19 @@ export default function FloatingButtons() {
                 href="https://wa.me/31682013490"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-full py-3.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white font-nunito font-bold text-sm tracking-wide transition-colors"
+                className="flex items-center justify-center w-full py-3.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm tracking-wide transition-colors"
               >
                 START CHAT
               </a>
             </div>
           </div>
 
-          {/* De Zwevende WhatsApp Knop */}
+          {/* De Zwevende WhatsApp Knop - ZONDER pulserend signaal */}
           <button
             onClick={() => setIsChatOpen(!isChatOpen)}
             aria-label="Open WhatsApp chat"
             className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-xl shadow-[#25D366]/40 transition-transform duration-300 hover:scale-110 hover:-translate-y-1"
           >
-            {/* Pulse effect - stopt als chat open is */}
-            {!isChatOpen && (
-              <span className="absolute inset-0 rounded-full border-2 border-[#25D366] opacity-75 animate-ping" />
-            )}
             <WhatsAppIcon className="w-7 h-7" />
           </button>
 
