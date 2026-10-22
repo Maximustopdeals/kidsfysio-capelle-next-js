@@ -1,27 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* Bestaande kleuren */
   --color-cream: #f8f9f7;
   --color-charcoal: #1e2b2a;
   --color-ink: #111a19;
   --color-sage: #b5dfcb;
   --color-forest: #1a5c47;
-  
-  /* NIEUW: Toegevoegd voor de editorial homepage */
   --color-warm-gray: #f4f4f2;
   --color-muted: #6b6b66;
 
-  /* Merk-kleuren */
   --color-brand-primary: #1a5c47;
   --color-brand-dark: #144536;
   --color-brand-mint: #b5dfcb;
   --color-brand-light: #f0f9f5;
 
-  /* Lettertypes */
-  --font-nunito: var(--font-nunito), "Nunito", sans-serif;
-  --font-open-sans: var(--font-open-sans), "Open Sans", sans-serif;
-  --font-serif: var(--font-playfair), "Playfair Display", serif; /* NIEUW */
+  /* Fonts */
+  --font-inter: var(--font-inter), "Inter", sans-serif;
+  --font-serif: var(--font-inter), "Inter", sans-serif; /* Fallback voor bestaande classes */
+  --font-open-sans: var(--font-inter), "Inter", sans-serif; /* Fallback */
+  --font-nunito: var(--font-inter), "Inter", sans-serif; /* Fallback */
 }
 
 @layer base {
@@ -30,9 +27,9 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-cream text-charcoal font-open-sans;
+    @apply bg-cream text-charcoal font-inter;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-nunito font-extrabold text-forest;
+    @apply font-inter font-bold text-forest; /* Bold ipv extrabold, past beter bij Inter */
   }
 }
