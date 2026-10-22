@@ -96,36 +96,32 @@ export default function Header() {
             {navigation.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
               return (
-                <div key={item.name} className="relative group" onMouseEnter={() => item.children && setActiveDropdown(item.name)} onMouseLeave={() => setActiveDropdown(null)}>
-                  
+                <div 
+                  key={item.name} 
+                  className="relative group" 
+                  onMouseEnter={() => item.children && setActiveDropdown(item.name)} 
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
                   {item.children ? (
-                    <div className="flex items-center gap-2">
-                      {/* De naam is een Link naar de pagina */}
-                      <Link 
-                        href={item.href} 
-                        className={`flex items-center justify-center py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                    // Button in plaats van Link: alleen dropdown openen
+                    <button 
+                      type="button"
+                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                      className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                    >
+                      {item.name}
+                      <svg 
+                        className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.name ? "rotate-180" : ""}`} 
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
                       >
-                        {item.name}
-                      </Link>
-                      
-                      {/* Het pijltje is een aparte knop voor de dropdown */}
-                      <button 
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setActiveDropdown(activeDropdown === item.name ? null : item.name);
-                        }}
-                        aria-label={`Submenu van ${item.name} ${activeDropdown === item.name ? "sluiten" : "openen"}`}
-                        className={`p-1 rounded transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
-                      >
-                        <svg className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.name ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                    </div>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
                   ) : (
-                    <Link href={item.href} className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}>
+                    <Link 
+                      href={item.href} 
+                      className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                    >
                       {item.name}
                     </Link>
                   )}
@@ -134,7 +130,11 @@ export default function Header() {
                   {item.children && (
                     <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 w-52 origin-top rounded-2xl bg-white p-2 shadow-xl shadow-charcoal/5 ring-1 ring-black/5 transition-all duration-300 ${activeDropdown === item.name ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
                       {item.children.map((child) => (
-                        <Link key={child.name} href={child.href} className="block text-center rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider text-charcoal hover:bg-sage/10 hover:text-forest transition-colors">
+                        <Link 
+                          key={child.name} 
+                          href={child.href} 
+                          className="block text-center rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider text-charcoal hover:bg-sage/10 hover:text-forest transition-colors"
+                        >
                           {child.name}
                         </Link>
                       ))}
@@ -182,39 +182,24 @@ export default function Header() {
               return (
                 <li key={item.name} className="border-b border-charcoal/5 pb-4">
                   {item.children ? (
-                    <div className="flex items-center justify-between w-full">
-                      <Link 
-                        href={item.href} 
-                        className={`font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
-                          isActive ? "text-sage" : "text-charcoal hover:text-forest"
-                        }`}
+                    // Button in plaats van Link: alleen accordion openen
+                    <button 
+                      type="button"
+                      onClick={() => setMobileDropdown(isDropdownOpen ? null : item.name)}
+                      className={`flex items-center justify-between w-full font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                    >
+                      {item.name}
+                      <svg 
+                        className={`w-5 h-5 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} 
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                       >
-                        {item.name}
-                      </Link>
-                      <button 
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setMobileDropdown(isDropdownOpen ? null : item.name);
-                        }}
-                        aria-label={`Submenu van ${item.name} ${isDropdownOpen ? "sluiten" : "openen"}`}
-                        className="p-2 -mr-2 text-sage hover:text-forest transition-colors"
-                      >
-                        <svg 
-                          className={`w-5 h-5 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} 
-                          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                    </div>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
                   ) : (
                     <Link 
                       href={item.href} 
-                      className={`block font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
-                        isActive ? "text-sage" : "text-charcoal hover:text-forest"
-                      }`}
+                      className={`block font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
                     >
                       {item.name}
                     </Link>
@@ -222,9 +207,7 @@ export default function Header() {
                   
                   {item.children && (
                     <div 
-                      className={`grid transition-all duration-300 ease-in-out ${
-                        isDropdownOpen ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0"
-                      }`}
+                      className={`grid transition-all duration-300 ease-in-out ${isDropdownOpen ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0"}`}
                     >
                       <div className="overflow-hidden">
                         <div className="flex flex-col space-y-2 pl-4 border-l-2 border-sage/30">
@@ -247,6 +230,7 @@ export default function Header() {
           </ul>
         </div>
 
+        {/* Vaste CTA Onderaan het Mobiele Menu */}
         <div className="p-6 bg-cream border-t border-charcoal/5 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
           <a 
             href="tel:0103032575" 
