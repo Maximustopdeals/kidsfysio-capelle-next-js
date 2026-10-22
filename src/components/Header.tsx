@@ -100,15 +100,29 @@ export default function Header() {
                 <div key={item.name} className="relative group" onMouseEnter={() => item.children && setActiveDropdown(item.name)} onMouseLeave={() => setActiveDropdown(null)}>
                   
                   {item.children ? (
-                    <button 
-                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                      className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
-                    >
-                      {item.name}
-                      <svg className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.name ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
+                    <div className="flex items-center gap-1">
+                      {/* De naam is nu een Link naar de pagina */}
+                      <Link 
+                        href={item.href} 
+                        className={`flex items-center justify-center py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                      >
+                        {item.name}
+                      </Link>
+                      
+                      {/* Het pijltje is een aparte knop voor de dropdown */}
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setActiveDropdown(activeDropdown === item.name ? null : item.name);
+                        }}
+                        aria-label={`Submenu van ${item.name} ${activeDropdown === item.name ? "sluiten" : "openen"}`}
+                        className={`p-1 rounded transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                      >
+                        <svg className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.name ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    </div>
                   ) : (
                     <Link href={item.href} className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}>
                       {item.name}
@@ -166,7 +180,6 @@ export default function Header() {
 
               return (
                 <li key={item.name} className="border-b border-charcoal/5 pb-4">
-                  {/* Als het item children heeft, splits in een link en een accordion-knop */}
                   {item.children ? (
                     <div className="flex items-center justify-between w-full">
                       <Link 
@@ -201,7 +214,6 @@ export default function Header() {
                     </Link>
                   )}
                   
-                  {/* Accordion Content */}
                   {item.children && (
                     <div 
                       className={`grid transition-all duration-300 ease-in-out ${
