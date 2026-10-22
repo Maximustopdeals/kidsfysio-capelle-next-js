@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito, Open_Sans, Playfair_Display } from "next/font/google"; // <-- Playfair toegevoegd
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,44 +8,56 @@ import Analytics, { GtmNoscript } from "@/components/Analytics";
 import StructuredData from "@/components/StructuredData";
 import { siteConfig } from "@/config";
 
-const nunito = Nunito({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "800", "900"],
-  variable: "--font-nunito",
-  display: "swap",
-});
-
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-open-sans",
-  display: "swap",
-});
-
-// NIEUW: Playfair Display importeren voor de high-end koppen
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // Licht en sierlijk
-  variable: "--font-playfair",
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  // ... (laat de metadata zoals die was)
   metadataBase: new URL(siteConfig.domain),
   title: {
     default: "Kinderfysiotherapie Capelle aan den IJssel | Je kind weer spelend in beweging",
     template: "%s",
   },
   description: siteConfig.description,
-  // ... (rest van metadata)
+  applicationName: siteConfig.name,
+  keywords: [
+    "kinderfysiotherapie Capelle aan den IJssel",
+    "kinderfysiotherapeut Capelle aan den IJssel",
+    "kinderfysiotherapie Rotterdam",
+    "Kids Fysio Capelle",
+    "baby fysiotherapie",
+    "SI-therapie kinderen",
+  ],
+  authors: [{ name: siteConfig.name, url: siteConfig.domain }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  formatDetection: { telephone: true, email: true, address: true },
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "nl_NL",
+    url: siteConfig.domain,
+    siteName: siteConfig.name,
+    title: "Kinderfysiotherapie Capelle aan den IJssel | Kids Fysio Capelle",
+    description: siteConfig.description,
+    images: [{ url: "/images/KidsFysioCapelle-team-2.webp", width: 1200, height: 630, alt: "Het team van Kids Fysio Capelle in de praktijk" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kinderfysiotherapie Capelle aan den IJssel | Kids Fysio Capelle",
+    description: siteConfig.description,
+    images: ["/images/KidsFysioCapelle-team-2.webp"],
+  },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  ...(siteConfig.googleSiteVerification ? { verification: { google: siteConfig.googleSiteVerification } } : {}),
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    // Voeg de playfair.variable toe aan de html class
-    <html lang="nl-NL" className={`${nunito.variable} ${openSans.variable} ${playfair.variable}`}>
-      <body className="flex flex-col min-h-screen">
+    <html lang="nl-NL" className={`${inter.variable}`}>
+      <body className="flex flex-col min-h-screen font-inter">
         <GtmNoscript />
         <Header />
         <main className="flex-grow">
