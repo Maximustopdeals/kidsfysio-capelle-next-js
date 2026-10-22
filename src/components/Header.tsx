@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -51,7 +51,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Sluit het mobiele menu automatisch als de route verandert
   useEffect(() => {
     setMobileOpen(false);
     setMobileDropdown(null);
@@ -100,8 +99,8 @@ export default function Header() {
                 <div key={item.name} className="relative group" onMouseEnter={() => item.children && setActiveDropdown(item.name)} onMouseLeave={() => setActiveDropdown(null)}>
                   
                   {item.children ? (
-                    <div className="flex items-center gap-1">
-                      {/* De naam is nu een Link naar de pagina */}
+                    <div className="flex items-center gap-2">
+                      {/* De naam is een Link naar de pagina */}
                       <Link 
                         href={item.href} 
                         className={`flex items-center justify-center py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
@@ -111,8 +110,10 @@ export default function Header() {
                       
                       {/* Het pijltje is een aparte knop voor de dropdown */}
                       <button 
+                        type="button"
                         onClick={(e) => {
                           e.preventDefault();
+                          e.stopPropagation();
                           setActiveDropdown(activeDropdown === item.name ? null : item.name);
                         }}
                         aria-label={`Submenu van ${item.name} ${activeDropdown === item.name ? "sluiten" : "openen"}`}
@@ -166,7 +167,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ─── MOBIEL MENU (High-End Accordion Overlay) ─── */}
+      {/* ─── MOBIEL MENU ─── */}
       <div 
         className={`lg:hidden fixed inset-x-0 top-[108px] bottom-0 bg-cream z-[999] transition-all duration-500 ease-in-out origin-top flex flex-col ${
           mobileOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 invisible pointer-events-none"
@@ -191,7 +192,12 @@ export default function Header() {
                         {item.name}
                       </Link>
                       <button 
-                        onClick={() => setMobileDropdown(isDropdownOpen ? null : item.name)}
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setMobileDropdown(isDropdownOpen ? null : item.name);
+                        }}
                         aria-label={`Submenu van ${item.name} ${isDropdownOpen ? "sluiten" : "openen"}`}
                         className="p-2 -mr-2 text-sage hover:text-forest transition-colors"
                       >
@@ -241,7 +247,6 @@ export default function Header() {
           </ul>
         </div>
 
-        {/* Vaste CTA Onderaan het Mobiele Menu */}
         <div className="p-6 bg-cream border-t border-charcoal/5 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
           <a 
             href="tel:0103032575" 
