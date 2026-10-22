@@ -102,14 +102,15 @@ export default function PeutersKleutersPage() {
             <FadeIn delay={0.2} direction="left">
               <div className="absolute -inset-4 bg-sage/20 rounded-[2.5rem] transform rotate-2 blur-lg"></div>
               
-              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
+              {/* AANGEPAST: aspect-[4/3] in plaats van [4/5] */}
+              <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl shadow-charcoal/10">
                 <Image
                   src="/images/peuter_kleuter-behandeling-bij-kids-fysio-Capelle.webp"
                   alt="Kinderfysiotherapie behandeling voor peuters en kleuters bij Kids Fysio Capelle"
                   fill
                   priority
                   quality={100}
-                  className="object-cover object-[50%_20%] transition-transform duration-700 hover:scale-105"
+                  className="object-cover object-center transition-transform duration-700 hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
@@ -274,13 +275,14 @@ export default function PeutersKleutersPage() {
       <section className="py-28 lg:py-36 bg-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-5 relative aspect-[4/5] rounded-[2rem] shadow-2xl shadow-charcoal/10 overflow-hidden">
+            {/* AANGEPAST: aspect-[4/3] in plaats van [4/5] */}
+            <div className="lg:col-span-5 relative aspect-[4/3] rounded-[2rem] shadow-2xl shadow-charcoal/10 overflow-hidden">
               <Image
                 src="/images/peuter_kleuter-behandeling-bij-kids-fysio-Capelle.webp"
                 alt="Kinderfysiotherapie voor peuters en kleuters bij Kids Fysio Capelle"
                 fill
                 quality={100}
-                className="object-cover object-[50%_30%] transition-transform duration-700 hover:scale-105"
+                className="object-cover object-center transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>
