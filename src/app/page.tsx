@@ -69,44 +69,52 @@ const badges = [
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero met de oude WordPress stijl (Lichtgroene gradient) */}
-      <section className="relative h-[80vh] min-h-[600px] max-h-[800px] flex items-center overflow-hidden">
-        <Image
-          src="/images/afbeelding-KidsFysioCapelle-oefenzaal.webp"
-          alt="Oefenzaal Kids Fysio Capelle"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        {/* Lichtgroene gradient overlay zoals op de oude site */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#b5dfcb]/95 via-[#b5dfcb]/70 to-[#b5dfcb]/20 z-10" />
-
-        <div className="relative z-20 w-full mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="max-w-2xl">
+      {/* 1. Split-Screen Hero: tekst links, foto rechts (muurtekening volledig zichtbaar) */}
+      <section className="relative w-full bg-sage overflow-hidden">
+        <div className="mx-auto max-w-[1440px] grid grid-cols-1 lg:grid-cols-2 items-stretch">
+          
+          {/* Linkerkant: Tekst op de huiskleur */}
+          <div className="flex flex-col justify-center px-6 lg:px-16 py-20 lg:py-32">
             <FadeIn>
               <p className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-forest mb-4">
                 Kids Fysio Capelle
               </p>
             </FadeIn>
             <FadeIn delay={0.12}>
-              <h1 className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1] text-forest mb-6">
+              <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[1.1] text-forest mb-6">
                 Spelend in beweging!
               </h1>
             </FadeIn>
             <FadeIn delay={0.28}>
-              <p className="text-lg text-forest/90 max-w-md leading-relaxed mb-10">
+              <p className="text-lg text-forest/80 max-w-md leading-relaxed mb-10">
                 Onze kinderfysiotherapeuten begeleiden kinderen van baby tot tiener met gerichte behandeling, motorische stimulatie en ontwikkeling in beweging.
               </p>
             </FadeIn>
             <FadeIn delay={0.4}>
               <div className="flex flex-wrap items-center gap-4">
-                <Button href="/contact/" className="bg-forest text-white hover:bg-charcoal shadow-lg border-none rounded-lg px-8 py-4" size="lg">
+                <Button 
+                  href="/contact/" 
+                  className="bg-forest text-white hover:bg-charcoal shadow-lg border-none rounded-lg px-8 py-4" 
+                  size="lg"
+                >
                   Maak direct een afspraak
                 </Button>
               </div>
             </FadeIn>
           </div>
+
+          {/* Rechterkant: Foto zonder overlay */}
+          <div className="relative min-h-[400px] lg:min-h-[600px]">
+            <Image
+              src="/images/afbeelding-KidsFysioCapelle-oefenzaal.webp"
+              alt="Oefenzaal Kids Fysio Capelle"
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+
         </div>
       </section>
 
@@ -255,7 +263,6 @@ export default function HomePage() {
               <Button href="/contact/" className="bg-forest text-white hover:bg-charcoal shadow-lg border-none rounded-lg px-8 py-4" size="lg">
                 Afspraak maken
               </Button>
-              {/* NIEUW: CTA naar reviews */}
               <Link href="/reviews/" className="group flex items-center gap-2 text-lg font-bold text-forest hover:text-charcoal transition-colors">
                 Lees de ervaringen van andere ouders
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
