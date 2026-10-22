@@ -11,6 +11,7 @@ const navigation = [
     name: "Over ons", 
     href: "/over-ons",
     children: [{ name: "Samenwerkingen", href: "/samenwerkingen" }]
+    // clickable: true (standaard)
   },
   { 
     name: "Behandelingen", 
@@ -20,7 +21,8 @@ const navigation = [
       { name: "Peuters & kleuters", href: "/peuters-kleuters" },
       { name: "Basisschool", href: "/basisschool" },
       { name: "Tiener", href: "/tiener" },
-    ]
+    ],
+    dropdownOnly: true, // <-- deze is niet klikbaar
   },
   { name: "Reviews", href: "/reviews" },
   { name: "Specialisaties", href: "/specialisaties" },
@@ -95,29 +97,59 @@ export default function Header() {
           <nav className="hidden lg:flex items-center justify-center gap-6 xl:gap-8" aria-label="Hoofdmenu">
             {navigation.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+              const hasChildren = !!item.children;
+              const isDropdownOnly = item.dropdownOnly === true;
+
               return (
                 <div 
                   key={item.name} 
                   className="relative group" 
-                  onMouseEnter={() => item.children && setActiveDropdown(item.name)} 
+                  onMouseEnter={() => hasChildren && setActiveDropdown(item.name)} 
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  {item.children ? (
-                    // Button in plaats van Link: alleen dropdown openen
-                    <button 
-                      type="button"
-                      onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                      className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
-                    >
-                      {item.name}
-                      <svg 
-                        className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.name ? "rotate-180" : ""}`} 
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                  {hasChildren ? (
+                    isDropdownOnly ? (
+                      // Alleen een button: geen link, alleen dropdown openen
+                      <button 
+                        type="button"
+                        onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                        className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
+                        {item.name}
+                        <svg 
+                          className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.name ? "rotate-180" : ""}`} 
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    ) : (
+                      // Link + aparte dropdown-knop
+                      <div className="flex items-center gap-2">
+                        <Link 
+                          href={item.href} 
+                          className={`flex items-center justify-center py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                        >
+                          {item.name}
+                        </Link>
+                        <button 
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setActiveDropdown(activeDropdown === item.name ? null : item.name);
+                          }}
+                          aria-label={`Submenu van ${item.name} ${activeDropdown === item.name ? "sluiten" : "openen"}`}
+                          className={`p-1 rounded transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                        >
+                          <svg className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.name ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                      </div>
+                    )
                   ) : (
+                    // Gewone link
                     <Link 
                       href={item.href} 
                       className={`flex items-center justify-center gap-1.5 py-2 font-nunito font-bold text-[0.85rem] tracking-wide uppercase transition-all duration-300 ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
@@ -126,8 +158,8 @@ export default function Header() {
                     </Link>
                   )}
 
-                  {/* Dropdown */}
-                  {item.children && (
+                  {/* Dropdown (voor items met children) */}
+                  {hasChildren && (
                     <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 w-52 origin-top rounded-2xl bg-white p-2 shadow-xl shadow-charcoal/5 ring-1 ring-black/5 transition-all duration-300 ${activeDropdown === item.name ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
                       {item.children.map((child) => (
                         <Link 
@@ -178,36 +210,74 @@ export default function Header() {
             {navigation.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
               const isDropdownOpen = mobileDropdown === item.name;
+              const hasChildren = !!item.children;
+              const isDropdownOnly = item.dropdownOnly === true;
 
               return (
                 <li key={item.name} className="border-b border-charcoal/5 pb-4">
-                  {item.children ? (
-                    // Button in plaats van Link: alleen accordion openen
-                    <button 
-                      type="button"
-                      onClick={() => setMobileDropdown(isDropdownOpen ? null : item.name)}
-                      className={`flex items-center justify-between w-full font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
-                    >
-                      {item.name}
-                      <svg 
-                        className={`w-5 h-5 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} 
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                  {hasChildren ? (
+                    isDropdownOnly ? (
+                      // Alleen een button: geen link, alleen accordion openen
+                      <button 
+                        type="button"
+                        onClick={() => setMobileDropdown(isDropdownOpen ? null : item.name)}
+                        className={`flex items-center justify-between w-full font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
+                        {item.name}
+                        <svg 
+                          className={`w-5 h-5 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} 
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    ) : (
+                      // Link + aparte knop voor accordion
+                      <div className="flex items-center justify-between w-full">
+                        <Link 
+                          href={item.href} 
+                          className={`font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
+                            isActive ? "text-sage" : "text-charcoal hover:text-forest"
+                          }`}
+                        >
+                          {item.name}
+                        </Link>
+                        <button 
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setMobileDropdown(isDropdownOpen ? null : item.name);
+                          }}
+                          aria-label={`Submenu van ${item.name} ${isDropdownOpen ? "sluiten" : "openen"}`}
+                          className="p-2 -mr-2 text-sage hover:text-forest transition-colors"
+                        >
+                          <svg 
+                            className={`w-5 h-5 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} 
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                      </div>
+                    )
                   ) : (
+                    // Gewone link
                     <Link 
                       href={item.href} 
-                      className={`block font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${isActive ? "text-sage" : "text-charcoal hover:text-forest"}`}
+                      className={`block font-nunito font-bold text-lg uppercase tracking-wide py-2 transition-colors ${
+                        isActive ? "text-sage" : "text-charcoal hover:text-forest"
+                      }`}
                     >
                       {item.name}
                     </Link>
                   )}
                   
-                  {item.children && (
+                  {hasChildren && (
                     <div 
-                      className={`grid transition-all duration-300 ease-in-out ${isDropdownOpen ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0"}`}
+                      className={`grid transition-all duration-300 ease-in-out ${
+                        isDropdownOpen ? "grid-rows-[1fr] opacity-100 mt-2" : "grid-rows-[0fr] opacity-0"
+                      }`}
                     >
                       <div className="overflow-hidden">
                         <div className="flex flex-col space-y-2 pl-4 border-l-2 border-sage/30">
