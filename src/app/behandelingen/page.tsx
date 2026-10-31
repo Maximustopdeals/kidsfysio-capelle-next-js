@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 const categories = [
   { href: "/baby-dreumes/", title: "Baby & Dreumes", years: "0-2", text: "Gespecialiseerde zorg voor de allerkleinsten. Van motorische ontwikkeling tot voorkeurshoudingen en overstrekking." },
   { href: "/peuters-kleuters/", title: "Peuters & Kleuters", years: "2-4", text: "Ondersteuning bij motorische ontwikkeling, evenwicht, coördinatie en voorbereiding op de basisschool." },
-  { href: "/basisschool/", title: "Basisschool", years: "5-12", text: "Hulp bij motorische vaardigheden, schrijfproblemen, houding, sportblessures en conditieverbetering." },
-  { href: "/tiener/", title: "Tiener", years: "12-18", text: "Begeleiding bij groeigerelateerde klachten, sportblessures, houdingscorrectie en conditietraining." },
+  { href: "/basisschool/", title: "Basisschool", years: "4-12", text: "Hulp bij motorische vaardigheden, schrijfmotoriek, houding, sportblessures en conditieverbetering." },
+  { href: "/tiener/", title: "Tieners", years: "12-18", text: "Begeleiding bij groeigerelateerde klachten, sportblessures, houding en conditie." },
 ];
 
 export default function BehandelingenPage() {
