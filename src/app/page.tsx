@@ -29,28 +29,28 @@ export const metadata: Metadata = {
 
 const ageGroups = [
   {
-    href: "/behandelingen/baby-dreumes/",
+    href: "https://kidsfysio-capelle-next-js.vercel.app/baby-dreumes/",
     title: "Baby & Dreumes",
     years: "0-2 jaar",
     description:
       "Gespecialiseerde zorg bij prematuriteit, voorkeurshouding, overstrekking en de motorische ontwikkeling.",
   },
   {
-    href: "/behandelingen/peuters-kleuters/",
+    href: "https://kidsfysio-capelle-next-js.vercel.app/peuters-kleuters/",
     title: "Peuters & Kleuters",
     years: "2-4 jaar",
     description:
       "Ondersteuning bij de motorische ontwikkeling, evenwicht en coördinatie. De motorische basis voor een soepele start op de basisschool.",
   },
   {
-    href: "/behandelingen/basisschool/",
+    href: "https://kidsfysio-capelle-next-js.vercel.app/basisschool/",
     title: "Basisschool",
     years: "4-12 jaar",
     description:
       "Hulp bij motorische vaardigheden, schrijfmotoriek, houding, sportblessures en conditieverbetering. Motorische vaardigheden die op school meedoen, vanzelfsprekend maken.",
   },
   {
-    href: "/behandelingen/tieners/",
+    href: "https://kidsfysio-capelle-next-js.vercel.app/tiener/",
     title: "Tieners",
     years: "12-18 jaar",
     description:
@@ -249,9 +249,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {ageGroups.map((group, i) => (
               <FadeIn key={group.href} delay={i * 0.06}>
-                <Link
+                <a
                   href={group.href}
-                  className="group flex flex-col h-full bg-sage rounded-[2rem] p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
+                  className="group flex flex-col h-full bg-sage rounded-[2rem] p-8 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-forest/50"
                 >
                   <h3 className="text-2xl font-bold text-forest mb-2 group-hover:text-brand-dark transition-colors">
                     {group.title}
@@ -279,7 +279,7 @@ export default function HomePage() {
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </span>
-                </Link>
+                </a>
               </FadeIn>
             ))}
           </div>
