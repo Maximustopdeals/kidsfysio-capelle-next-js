@@ -149,8 +149,8 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 1. Hero: geen subtekst */}
-      <section className="relative h-[85vh] min-h-[600px] max-h-[800px] flex items-end overflow-hidden">
+      {/* 1. Hero: gecentreerde tekst onder de anatomie afbeelding */}
+      <section className="relative h-[85vh] min-h-[600px] max-h-[800px] flex items-center justify-center overflow-hidden">
         <Image
           src="/images/afbeelding-KidsFysioCapelle-oefenzaal.webp"
           alt="Oefenzaal van Kids Fysio Capelle in Capelle aan den IJssel"
@@ -159,28 +159,32 @@ export default function HomePage() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#b5dfcb] via-[#b5dfcb]/60 to-transparent z-10" />
+        
+        {/* Zachte gradient die de tekst in het midden goed leesbaar houdt */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#b5dfcb]/50 via-[#b5dfcb]/20 to-[#b5dfcb]/80 z-10" />
 
-        <div className="relative z-20 w-full mx-auto max-w-7xl px-6 lg:px-12 pb-16 lg:pb-24">
-          <div className="max-w-2xl">
+        <div className="relative z-20 w-full mx-auto max-w-4xl px-6 text-center">
+          <div className="flex flex-col items-center">
             <FadeIn>
               <p className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-forest mb-4">
                 Kids Fysio Capelle
               </p>
             </FadeIn>
             <FadeIn delay={0.12}>
-              <h1 className="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1] text-forest mb-8">
+              <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[1.1] text-forest mb-8">
                 Spelend in beweging!
               </h1>
             </FadeIn>
             <FadeIn delay={0.28}>
-              <Button
-                href="/contact/"
-                className="bg-white !text-forest hover:bg-forest hover:!text-white shadow-lg border-none rounded-lg px-8 py-4 font-bold"
-                size="lg"
-              >
-                Maak direct een afspraak
-              </Button>
+              <div className="flex justify-center">
+                <Button
+                  href="/contact/"
+                  className="bg-white !text-forest hover:bg-forest hover:!text-white shadow-xl border-none rounded-lg px-8 py-4 font-bold"
+                  size="lg"
+                >
+                  Maak direct een afspraak
+                </Button>
+              </div>
             </FadeIn>
           </div>
         </div>
