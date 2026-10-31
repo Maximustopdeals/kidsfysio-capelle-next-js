@@ -30,7 +30,8 @@ const practiceFeatures = [
   },
   {
     title: "BIG-geregistreerd",
-    text: "Alle therapeuten zijn BIG-geregistreerd en gespecialiseerd.",
+    // Aangepast voor consistentie met de gewenste warmere toon uit het Word-document
+    text: "Alle kinderfysiotherapeuten in onze praktijk zijn BIG-geregistreerd en gespecialiseerd.",
     icon: "shield",
   },
 ];
