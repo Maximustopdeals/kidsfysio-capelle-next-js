@@ -10,7 +10,14 @@ const navigation = [
   { 
     name: "Over ons", 
     href: "/over-ons",
-    children: [{ name: "Samenwerkingen", href: "/samenwerkingen" }]
+    children: [
+      { name: "Het team", href: "/over-ons/het-team" },
+      { name: "Eerste bezoek", href: "/over-ons/eerste-bezoek" },
+      { name: "Belangrijke informatie", href: "/over-ons/belangrijke-informatie" },
+      { name: "Klachtenreglement", href: "/over-ons/klachtenreglement" },
+      { name: "Vergoedingen", href: "/over-ons/vergoedingen" },
+      { name: "Samenwerkingen", href: "/samenwerkingen" }
+    ]
   },
   { 
     name: "Behandelingen", 
@@ -25,7 +32,6 @@ const navigation = [
   },
   { name: "Reviews", href: "/reviews" },
   { name: "Specialisaties", href: "/specialisaties" },
-  { name: "Vergoedingen", href: "/vergoedingen" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -68,7 +74,7 @@ export default function Header() {
   return (
     <div className="sticky top-0 z-[1000] w-full flex flex-col">
       
-      {/* ─── TOPBAR ─── */}
+      {/* TOPBAR */}
       <div className="bg-sage text-forest text-[0.65rem] sm:text-xs py-2.5 px-6 lg:px-12 grid grid-cols-3 items-center font-bold tracking-[0.15em] uppercase">
         <a className="hover:text-charcoal transition-colors flex items-center gap-2 justify-self-start" href="https://www.instagram.com/kidsfysiocapelle/" target="_blank" rel="noopener noreferrer" aria-label="Volg ons op Instagram">
           <InstagramIcon />
@@ -79,17 +85,15 @@ export default function Header() {
           Samen maken we bewegen weer leuk
         </span>
         
-        {/* E-mailadres terug aan de rechterkant */}
         <a href="mailto:info@kidsfysiocapelle.nl" className="hover:text-charcoal transition-colors justify-self-end font-semibold">
           info@kidsfysiocapelle.nl
         </a>
       </div>
 
-      {/* ─── HOOFDNAVIGATIE ─── */}
+      {/* HOOFDNAVIGATIE */}
       <header className={`w-full transition-all duration-500 border-b border-charcoal/5 ${scrolled ? "bg-cream/95 backdrop-blur-md shadow-sm py-3" : "bg-cream py-5"}`}>
         <div className="mx-auto max-w-[1440px] w-full px-6 lg:px-12 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
           
-          {/* Links: Logo */}
           <div className="flex justify-start">
             <Link 
               href="/" 
@@ -108,7 +112,7 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Midden: Desktop Menu */}
+          {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center justify-center gap-6 xl:gap-8" aria-label="Hoofdmenu">
             {navigation.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
@@ -172,7 +176,7 @@ export default function Header() {
                   )}
 
                   {hasChildren && (
-                    <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 w-52 origin-top rounded-2xl bg-white p-2 shadow-xl shadow-charcoal/5 ring-1 ring-black/5 transition-all duration-300 ${activeDropdown === item.name ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
+                    <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 w-56 origin-top rounded-2xl bg-white p-2 shadow-xl shadow-charcoal/5 ring-1 ring-black/5 transition-all duration-300 ${activeDropdown === item.name ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"}`}>
                       {item.children.map((child) => (
                         <Link 
                           key={child.name} 
@@ -189,7 +193,6 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Rechts: CTA & Mobile Toggle */}
           <div className="flex items-center justify-end gap-4">
             <a href="tel:0103032575" className="hidden lg:inline-flex items-center justify-center rounded-full bg-forest px-6 py-2.5 font-bold text-[0.85rem] text-white tracking-wide shadow-lg shadow-forest/20 transition-all hover:-translate-y-0.5 hover:bg-charcoal">
               Bel ons
@@ -211,7 +214,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ─── MOBIEL MENU ─── */}
+      {/* MOBIEL MENU */}
       <div 
         className={`lg:hidden fixed inset-x-0 top-[108px] bottom-0 bg-cream z-[999] transition-all duration-500 ease-in-out origin-top flex flex-col ${
           mobileOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 invisible pointer-events-none"
