@@ -149,29 +149,46 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 1. Hero: gecentreerde tekst, geen CTA-knop, hoogte iets verlaagd zodat de banner 'piept' */}
-      <section className="relative h-[70vh] lg:h-[75vh] min-h-[500px] max-h-[800px] flex items-center justify-center overflow-hidden">
-        <Image
-          src="/images/afbeelding-KidsFysioCapelle-oefenzaal.webp"
-          alt="Oefenzaal van Kids Fysio Capelle in Capelle aan den IJssel"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
+      {/* 1. Hero: Aparte mobiele afbeelding en desktop afbeelding */}
+      <section className="relative h-[80vh] lg:h-[75vh] min-h-[550px] max-h-[800px] flex items-end lg:items-center justify-center overflow-hidden">
         
-        {/* Zachte gradient die de tekst in het midden goed leesbaar houdt */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#b5dfcb]/50 via-[#b5dfcb]/20 to-[#b5dfcb]/80 z-10" />
+        {/* Desktop Afbeelding (Verborgen op mobiel) */}
+        <div className="hidden lg:block absolute inset-0">
+          <Image
+            src="/images/afbeelding-KidsFysioCapelle-oefenzaal.webp"
+            alt="Oefenzaal van Kids Fysio Capelle in Capelle aan den IJssel"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        </div>
 
-        <div className="relative z-20 w-full mx-auto max-w-4xl px-6 text-center">
+        {/* Mobiele Afbeelding (Verborgen op desktop) */}
+        <div className="block lg:hidden absolute inset-0">
+          <Image
+            src="/images/afbeelding-KidsFysioCapelle-oefenzaal-mobiel.webp"
+            alt="Oefenzaal van Kids Fysio Capelle in Capelle aan den IJssel"
+            fill
+            priority
+            className="object-cover object-[center_top]"
+            sizes="100vw"
+          />
+        </div>
+        
+        {/* Gradient overlay voor leesbaarheid van de tekst */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#b5dfcb] via-[#b5dfcb]/40 to-transparent lg:bg-gradient-to-b lg:from-[#b5dfcb]/50 lg:via-[#b5dfcb]/20 lg:to-[#b5dfcb]/80 z-10" />
+
+        {/* Tekstblok: Op mobiel onderaan (op de vloer), op desktop in het midden */}
+        <div className="relative z-20 w-full mx-auto max-w-4xl px-6 pb-20 lg:pb-0 text-center">
           <div className="flex flex-col items-center">
             <FadeIn>
-              <p className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-forest mb-4">
+              <p className="text-[0.7rem] font-bold tracking-[0.2em] uppercase text-forest mb-3 lg:mb-4">
                 Kids Fysio Capelle
               </p>
             </FadeIn>
             <FadeIn delay={0.12}>
-              <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[1.1] text-forest mb-8">
+              <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[1.1] text-forest">
                 Spelend in beweging!
               </h1>
             </FadeIn>
