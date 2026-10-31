@@ -149,8 +149,8 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 1. Hero: gecentreerde tekst onder de anatomie afbeelding */}
-      <section className="relative h-[85vh] min-h-[600px] max-h-[800px] flex items-center justify-center overflow-hidden">
+      {/* 1. Hero: gecentreerde tekst, geen CTA-knop, hoogte iets verlaagd zodat de banner 'piept' */}
+      <section className="relative h-[70vh] lg:h-[75vh] min-h-[500px] max-h-[800px] flex items-center justify-center overflow-hidden">
         <Image
           src="/images/afbeelding-KidsFysioCapelle-oefenzaal.webp"
           alt="Oefenzaal van Kids Fysio Capelle in Capelle aan den IJssel"
@@ -174,17 +174,6 @@ export default function HomePage() {
               <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-bold leading-[1.1] text-forest mb-8">
                 Spelend in beweging!
               </h1>
-            </FadeIn>
-            <FadeIn delay={0.28}>
-              <div className="flex justify-center">
-                <Button
-                  href="/contact/"
-                  className="bg-white !text-forest hover:bg-forest hover:!text-white shadow-xl border-none rounded-lg px-8 py-4 font-bold"
-                  size="lg"
-                >
-                  Maak direct een afspraak
-                </Button>
-              </div>
             </FadeIn>
           </div>
         </div>
